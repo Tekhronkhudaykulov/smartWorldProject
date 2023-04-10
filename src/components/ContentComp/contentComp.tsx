@@ -1,0 +1,25 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { HomeIcon } from '../../assets/icons'
+import { APP_ROUTES } from '../../router/Route'
+import Banner from '../Banner/banner'
+import IconComp from '../IconComp/iconComp'
+import styles from "./contentComp.module.css"
+
+interface Props {
+    iconPress?: () => void;
+}
+
+const ContentComp: React.FC<Props> = ({
+    iconPress
+}) => {
+    const navigation = useNavigate()
+    return (
+        <div className={styles.header}>
+            <IconComp iconType='primary' onPress={() => navigation(APP_ROUTES.MAIN)} icon={<HomeIcon />} text="Главная" />
+            <Banner />
+        </div>
+    )
+}
+
+export default ContentComp

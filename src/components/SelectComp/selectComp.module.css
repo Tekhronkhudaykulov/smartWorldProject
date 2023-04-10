@@ -1,0 +1,22 @@
+.container {
+    text-align: center;
+    width: 300px;
+    height: 45px;
+    background-color: #ebebeb;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+.selectBox {
+    width: 90%;
+    height: 100%;
+    background-color: #ebebeb;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.selectBox option {
+    font-family: "FuturaPTLight";
+    font-weight: 300;
+}

@@ -1,0 +1,13 @@
+.avatarBox {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 6px solid #FF9C20;
+    padding: 15px;
+}
+
+.faceBox {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

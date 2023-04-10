@@ -1,13 +1,116 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "FuturaPTDemi";
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.paging-item {
+  margin: 5px;
+}
+.paging-item.active{
+  fill: #FF9C20;
+}
+.paging-dot{
+  fill: #fff;
+  width: 15px;
+  height: 15px;
+  opacity: 1;
+}
+
+.slider-control-centerright{
+  display: none;
+}
+.slider-control-centerleft{
+  display: none;
+}
+
+@font-face {
+  font-family: "FuturaBold";
+  src: url("./assets/FuturaPT/FuturaPTBold.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaBoldOblique";
+  src: url("./assets/FuturaPT/FuturaPTBoldOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaBook";
+  src: url("./assets/FuturaPT/FuturaPTBook.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaBookOblique";
+  src: url("./assets/FuturaPT/FuturaPTBookOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondBold";
+  src: url("./assets/FuturaPT/FuturaPTCondBold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "FuturaCondBoldOblique";
+  src: url("./assets/FuturaPT/FuturaPTCondBoldOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondBook";
+  src: url("./assets/FuturaPT/FuturaPTCondBook.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondBookOblique";
+  src: url("./assets/FuturaPT/FuturaPTCondBookOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondExtraBold";
+  src: url("./assets/FuturaPT/FuturaPTCondExtraBold.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondExtraBoldOblique";
+  src: url("./assets/FuturaPT/FuturaPTCondExtraBoldOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondMedium";
+  src: url("./assets/FuturaPT/FuturaPTCondMedium.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaCondMediumOblique";
+  src: url("./assets/FuturaPT/FuturaPTCondMediumOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTDemi";
+  src: url("./assets/FuturaPT/FuturaPTDemi.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTDemiOblique";
+  src: url("./assets/FuturaPT/FuturaPTDemiOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTExtraBold";
+  src: url("./assets/FuturaPT/FuturaPTExtraBold.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTExtraBoldOblique";
+  src: url("./assets/FuturaPT/FuturaPTExtraBoldOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTHeavy";
+  src: url("./assets/FuturaPT/FuturaPTHeavy.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTLight";
+  src: url("./assets/FuturaPT/FuturaPTLight.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTLightOblique";
+  src: url("./assets/FuturaPT/FuturaPTLightOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTMedium";
+  src: url("./assets/FuturaPT/FuturaPTMedium.otf") format("truetype");
+}
+@font-face {
+  font-family: "FuturaPTMediumOblique";
+  src: url("./assets/FuturaPT/FuturaPTMediumOblique.otf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("./assets/Gilroy-Font/Radomir\ Tinkov\ -\ Gilroy-ExtraBold.otf") format("truetype");
 }

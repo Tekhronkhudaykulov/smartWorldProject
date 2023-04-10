@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    background: rgba(235, 235, 235, 0.46);
+    border-radius: 8px;
+    width: 50px;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    cursor: pointer;
+}
+.count {
+    font-size: 16px;
+    color: #484848;
+    font-family: "FuturaPTLight";
+}
+.container button {
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #C4C4C4;
+    cursor: pointer;
+    padding: 5px;
+}

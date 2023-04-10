@@ -1,0 +1,17 @@
+.container {
+    height: 100vh;
+}
+
+.topBox {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bottomBox {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

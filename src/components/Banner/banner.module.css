@@ -1,0 +1,23 @@
+.container {
+    width: 90%;
+    border-radius: 16px;
+    background-color: #FF9C20;
+    height: 250px;
+    overflow: hidden;
+}
+
+.banner{ 
+    width: 100%;
+    height: 100%;
+}
+
+.bannerImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.item{
+    position: relative;
+}

@@ -1,0 +1,42 @@
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+.header{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+}
+
+.rightIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: #FF9C20;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.info {
+    display: flex;
+    height: 15vh;
+    justify-content: space-between;
+    padding: 10px 8%;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 8%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 30px;
+    padding: 0 8%;
+}

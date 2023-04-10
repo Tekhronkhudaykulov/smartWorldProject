@@ -1,0 +1,27 @@
+.inputBox {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 450px;
+    background-color: #fbf9f9;
+    border-radius: 8px;
+}
+.label {
+    margin-bottom: 10px;
+}
+.icon {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input {
+    border: none;
+    outline: none;
+    height: 100%;
+    background-color:#fbf9f9;
+    width: 85%;
+    padding: 0 5px;
+    border-radius: 8px;
+    font-size: 16px;
+}

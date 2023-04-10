@@ -1,0 +1,35 @@
+.cantainer {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.header{ 
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 5%;
+}
+
+.filterLeft {
+    display: flex;
+}
+
+.filterBox {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 6%;
+}
+
+.content{
+    display: flex;
+    padding: 20px 6%;
+}
+.category {
+    margin-right: 30px;
+}
+
+.productBox {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+}

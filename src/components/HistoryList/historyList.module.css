@@ -1,0 +1,31 @@
+.container {
+   margin: 10px 0;
+}
+
+.topBox{
+    display: flex;
+    padding: 5px 0;
+    width: 100%;
+}
+.top {
+    flex: 1;
+}
+
+.total{
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(177, 160, 160, 0.35);
+}
+
+.listBox{
+    display: flex;
+    border-radius: 10px;
+    margin: 5px 0;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+}
+
+.list{
+    flex: 1;
+    padding: 10px 30px;
+}

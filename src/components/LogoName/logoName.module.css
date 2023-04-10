@@ -1,0 +1,11 @@
+.titleBox {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.title {
+    font-size: 80px;
+    color: #FF9C20;
+    font-family: "Gilroy";
+}

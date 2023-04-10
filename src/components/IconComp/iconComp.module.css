@@ -1,0 +1,32 @@
+.container {
+    text-align: center;
+}
+
+.primary{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: #FF9C20;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.outline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #FF9C20;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.outline:hover{
+    opacity: 0.7;
+}
+.primary:hover{
+    opacity: 0.7;
+}

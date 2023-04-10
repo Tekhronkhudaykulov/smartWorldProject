@@ -1,0 +1,39 @@
+.primary {
+    background: #FF9C20;
+    font-size: 18px;
+    border-radius: 8px;
+    color: #ffffff;
+    border: none;
+    transition:all 0.3s ease;
+}
+.outline{
+    border: 1px solid #FF9C20;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #FF9C20;
+    transition:all 0.3s ease;
+}
+
+.large{
+    width: 450px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.small{
+    width: 140px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.primary:hover {
+    opacity: 0.7;
+}
+.outline:hover {
+    opacity: 0.7;
+}
+.primary:disabled{
+    cursor: not-allowed;
+}
+
