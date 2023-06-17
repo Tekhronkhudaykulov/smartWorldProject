@@ -13,7 +13,7 @@ const TouchIdScreen = () => {
         <div className={styles.container}>
             <LogoName />
             <TouchIdComponent />
-            <Slider onPress={() => navigation(APP_ROUTES.MAIN)} />
+            <Slider onPress={() => navigation(APP_ROUTES.ACCESS)} />
             <Title fontSize='20px' title='Текст' />
         </div>
     )

@@ -1,17 +1,16 @@
-import React, { CSSProperties } from 'react'
-import styles from "./text.module.css"
+import React, { CSSProperties } from "react";
+import styles from "./text.module.css";
 interface Props {
-    text?: string;
-    style?: CSSProperties;
+  text?: string | number;
+  style?: CSSProperties;
 }
 
-const Text: React.FC<Props> = ({
-    text,
-    style
-}) => {
-    return (
-        <h4 style={{ ...style }} className={styles.text}>{text}</h4>
-    )
-}
+const Text: React.FC<Props> = ({ text, style }) => {
+  return (
+    <h4 style={{ ...style }} className={styles.text}>
+      {text}
+    </h4>
+  );
+};
 
-export default Text
+export default Text;

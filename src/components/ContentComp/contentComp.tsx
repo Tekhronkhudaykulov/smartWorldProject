@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HomeIcon } from '../../assets/icons'
+import { ArrowRight, HomeIcon } from '../../assets/icons'
 import { APP_ROUTES } from '../../router/Route'
 import Banner from '../Banner/banner'
 import IconComp from '../IconComp/iconComp'
@@ -16,7 +16,10 @@ const ContentComp: React.FC<Props> = ({
     const navigation = useNavigate()
     return (
         <div className={styles.header}>
-            <IconComp iconType='primary' onPress={() => navigation(APP_ROUTES.MAIN)} icon={<HomeIcon />} text="Главная" />
+            <div>
+                <IconComp iconType='primary' onPress={() => navigation(APP_ROUTES.MAIN)} icon={<HomeIcon />} text="Главная" />
+                <IconComp style={{ marginTop: "10px" }} iconType='primary' onPress={() => navigation(APP_ROUTES.WELCOME)} icon={<ArrowRight />} text="Выйти из системы" />
+            </div>
             <Banner />
         </div>
     )
