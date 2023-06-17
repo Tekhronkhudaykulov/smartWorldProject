@@ -7,6 +7,7 @@ export type GetProductList = {
   onHeartPress?: () => void;
   onBasketPress?: () => void;
   amount: number;
+  isFavorite: boolean;
 };
 
 export type InitialState = {

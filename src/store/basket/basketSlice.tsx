@@ -30,6 +30,7 @@ export const basketSlice = createModel<RootModel>()({
           payload,
           configToken
         );
+        dispatch.productSlice.getProduct();
         await dispatch.basketSlice.getFavourite();
       } catch (e) {
         alert(e);
@@ -50,6 +51,7 @@ export const basketSlice = createModel<RootModel>()({
     async addCard(payload) {
       try {
         const { data } = await api.post("v1/cart/add", payload, configToken);
+        dispatch.basketSlice.getAddCard();
       } catch (e) {
         alert(e);
       }
@@ -58,6 +60,7 @@ export const basketSlice = createModel<RootModel>()({
     async removeCard(payload) {
       try {
         const { data } = await api.post("v1/cart/remove", payload, configToken);
+        dispatch.basketSlice.getAddCard();
       } catch (e) {
         alert(e);
       }

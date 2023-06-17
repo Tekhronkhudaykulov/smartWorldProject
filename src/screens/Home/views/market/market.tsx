@@ -10,6 +10,7 @@ import {
   CaseIcon,
   Cash,
   HeartOutline,
+  HeartPrimary,
   Limit,
   SearchIcon,
 } from "../../../../assets/icons";
@@ -111,7 +112,7 @@ const Market = () => {
                 <ProductItem
                   key={index}
                   imgUrl={e.image}
-                  heart={<HeartOutline />}
+                  heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
                   onHeartPress={() =>
                     dispatch.basketSlice.addFavorite({
                       shop_id: 1,
