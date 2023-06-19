@@ -13,8 +13,7 @@ import { ASSETS } from "../../constants/requireAssets";
 import OrderList from "../OrderList/orderList";
 import Button from "../Button/button";
 import SelectComp from "../SelectComp/selectComp";
-import { Dispatch, RootState } from "../../store";
-import { useDispatch } from "react-redux";
+import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 
 const Order = () => {
@@ -23,6 +22,10 @@ const Order = () => {
     show("basket");
     hide("order");
   };
+
+  const { priceList } = useSelector((state: RootState) => state.basketSlice);
+
+  const { userList } = useSelector((state: RootState) => state.profileSlice);
 
   return (
     <div
@@ -43,12 +46,12 @@ const Order = () => {
                   fontSize="16px"
                   style={{ fontFamily: "FuturaPTLight", marginRight: "10px" }}
                 />
-                <Title title="Ройтман Рафаэль Евгеньевич" fontSize="16px" />
+                <Title title={userList.full_name || ""} fontSize="16px" />
               </div>
               <ItemComp
                 icon={<Cash />}
                 title="Остаток денежных средств:"
-                text="500.000 сум"
+                text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
                 textColor={COLORS.orange}
               />
             </div>
@@ -69,7 +72,7 @@ const Order = () => {
                 style={{ marginRight: "10px" }}
               />
               <Title
-                title="300.000 сум"
+                title={`${priceList.total_price?.toLocaleString("ru-RU")} сум`}
                 fontSize="20px"
                 color={COLORS.orange}
               />

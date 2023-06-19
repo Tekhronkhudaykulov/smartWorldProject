@@ -14,11 +14,16 @@ export const basketSlice = createModel<RootModel>()({
         favouriteList: payload,
       };
     },
-
     setAddCard: (state, payload: getAddCard[]) => {
       return {
         ...state,
         cardList: payload,
+      };
+    },
+    setPrice: (state, payload: getAddCard) => {
+      return {
+        ...state,
+        priceList: payload,
       };
     },
   },
@@ -88,6 +93,7 @@ export const basketSlice = createModel<RootModel>()({
       try {
         const { data } = await api.get("v1/cart/index", configToken);
         dispatch.basketSlice.setAddCard(data.data.data);
+        dispatch.basketSlice.setPrice(data.data);
       } catch (e) {
         alert(e);
       }

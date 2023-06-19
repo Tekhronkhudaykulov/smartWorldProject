@@ -50,9 +50,11 @@ const Market = () => {
 
   useEffect(() => {
     dispatch.productSlice.getProduct();
+    dispatch.profileSlice.getUser();
   }, []);
 
   const { productList } = useSelector((state: RootState) => state.productSlice);
+  const { userList } = useSelector((state: RootState) => state.profileSlice);
 
   return (
     <>
@@ -71,14 +73,16 @@ const Market = () => {
             <ItemComp
               icon={<Cash />}
               title="Остаток денежных средств:"
-              text="500.000 сум"
+              text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
               textColor={COLORS.orange}
               style={{ marginLeft: "30px" }}
             />
             <ItemComp
               icon={<Limit />}
               title="Остаток по лимиту:"
-              text="500.000 сум"
+              text={
+                `${userList.limit_summa?.toLocaleString("ru-RU")} сум` || ""
+              }
               textColor={COLORS.crimson}
               style={{ marginLeft: "30px" }}
               iconBack={COLORS.crimson}
@@ -120,7 +124,7 @@ const Market = () => {
                     })
                   }
                   name={e.name}
-                  price={`${e.price} сум`}
+                  price={`${e.price?.toLocaleString("ru-RU")} сум`}
                   // discount={`${e.discount} сум`}
                   count={e.amount}
                   onBuyPress={() => OnBuy(e)}

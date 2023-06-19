@@ -44,7 +44,10 @@ const ListItem: React.FC<Props> = ({
           />
         </div>
         <div className={styles.rightBox}>
-          <Title title={price} fontSize="15px" />
+          <Title
+            title={`${price?.toLocaleString("ru-RU")} сум`}
+            fontSize="15px"
+          />
           <IconComp
             iconType="outline"
             icon={<DelateIcon />}

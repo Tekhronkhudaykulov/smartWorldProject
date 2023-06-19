@@ -1,26 +1,36 @@
-import React from 'react'
-import styles from "./banner.module.css"
-import Carousel from 'nuka-carousel';
-import { ASSETS } from '../../constants/requireAssets';
-import Title from '../Title/title';
+import React, { useEffect } from "react";
+import styles from "./banner.module.css";
+import Carousel from "nuka-carousel";
+import { ASSETS } from "../../constants/requireAssets";
+import Title from "../Title/title";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../store";
+import { baseUrl } from "../../contants/API";
 
 const Banner = () => {
-    return (
-        <div className={styles.container}>
-            <Carousel
-                className={styles.banner}
-                autoplay
-                style={{
-                    height: "250px",
-                    width: "100%"
-                }}
-            >
-                <img className={styles.bannerImg} src={ASSETS.bannner} />
-                <img className={styles.bannerImg} src={ASSETS.bannner} />
-                <img className={styles.bannerImg} src={ASSETS.bannner} />
-            </Carousel>
-        </div>
-    )
-}
+  const disptach = useDispatch<Dispatch>();
 
-export default Banner
+  useEffect(() => {
+    disptach.OtherSlice.getSliderLoad();
+  }, []);
+
+  const { sliderList } = useSelector((state: RootState) => state.OtherSlice);
+  return (
+    <div className={styles.container}>
+      <Carousel
+        className={styles.banner}
+        autoplay
+        style={{
+          height: "250px",
+          width: "100%",
+        }}
+      >
+        {sliderList.map((item) => (
+          <img className={styles.bannerImg} src={`${baseUrl}/${item.path}`} />
+        ))}
+      </Carousel>
+    </div>
+  );
+};
+
+export default Banner;

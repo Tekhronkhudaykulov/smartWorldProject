@@ -4,7 +4,6 @@ export type getFavourite = {
   icon: string;
   image: string;
   price: number | string;
-
   discount: number | string;
   amount: number;
 };
@@ -20,7 +19,9 @@ export type getAddCard = {
     image: string;
   };
 };
+
 export type InitialState = {
   favouriteList: getFavourite[];
   cardList: getAddCard[];
+  priceList: Partial<getAddCard>;
 };

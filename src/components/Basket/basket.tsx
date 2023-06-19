@@ -33,6 +33,7 @@ const Basket = () => {
   }, []);
 
   const { cardList } = useSelector((state: RootState) => state.basketSlice);
+  const { priceList } = useSelector((state: RootState) => state.basketSlice);
 
   return (
     <>
@@ -59,7 +60,6 @@ const Basket = () => {
             </div>
             {cardList.length > 0 ? (
               cardList.map((e, index) => {
-                console.log({ e });
                 return (
                   <ListItem
                     key={index}
@@ -101,7 +101,9 @@ const Basket = () => {
                 style={{ marginRight: "10px" }}
               />
               <Title
-                title="1.000.000 сум"
+                title={
+                  `${priceList?.total_price?.toLocaleString("ru-RU")} сум` || ""
+                }
                 fontSize="22px"
                 color={COLORS.orange}
               />

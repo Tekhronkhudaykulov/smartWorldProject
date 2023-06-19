@@ -39,7 +39,10 @@ const OrderList = () => {
               <Text text={e.amount} style={{ marginLeft: "15px" }} />
             </div>
             <div className={styles.same}>
-              <Title title={`${e.price} sum`} fontSize="15px" />
+              <Title
+                title={`${e.price?.toLocaleString("ru-RU")} сум`}
+                fontSize="15px"
+              />
             </div>
             {/* <div className={styles.same}>
               <Title title={`${e.discount} sum`} fontSize="15px" />
