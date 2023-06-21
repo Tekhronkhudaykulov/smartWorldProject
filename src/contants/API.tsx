@@ -1,22 +1,54 @@
 import axios from "axios";
 
-const baseUrl = `https://spil.gptuz.uz`;
+const baseUrl = `https://spil.four-seasons.uz`;
 
 const url = baseUrl + `/api`;
 
-const api = axios.create({
+const $api = axios.create({
   baseURL: url,
 });
 
-api.defaults.headers.common["Accept"] = "application/json";
-api.defaults.headers.common["Content-Type"] = "application/json; charset=utf-8";
+const token = localStorage.getItem("@token");
 
-const token = "4qCzJbP8h5iHQK7TBS8Xx-AlJAbtyx8k";
+$api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-const configToken = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-    Accept: "application/json",
-  },
-};
-export { baseUrl, api, configToken };
+$api.defaults.headers.common["Accept"] = "application/json";
+$api.defaults.headers.common["Content-Type"] =
+  "application/json; charset=utf-8";
+
+// const token = "7NJuSfpecAOJRoJyIbelHyaXHivmKvUI";
+
+// const configToken = {
+//   headers: {
+//     Authorization: `Bearer ${token}`,
+//     Accept: "application/json",
+//   },
+// };
+
+// class Api {
+//   public readonly api: AxiosInstance;
+
+//   constructor() {
+//     makeAutoObservable(this);
+//     this.api = axios.create({
+//       baseURL: baseUrl,
+//     });
+
+//     this.api.interceptors.request.use(
+//       async (config: any) => {
+//         const tokenFromAsyncStore = localStorage.getItem("@token");
+
+//         this.setAccessToken(tokenFromAsyncStore as string);
+//         return config;
+//       },
+//       (error) => Promise.reject(error)
+//     );
+//   }
+
+//   private setAccessToken = (accessToken: string) => {
+//     this.api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+//   };
+// }
+
+// const $api = new Api().api;
+export { baseUrl, $api };

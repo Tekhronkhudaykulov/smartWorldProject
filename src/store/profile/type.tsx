@@ -10,4 +10,5 @@ export type userList = {
 
 export type InitialState = {
   userList: Partial<userList>;
+  token: string;
 };

@@ -19,14 +19,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
 
 const Basket = () => {
+  const dispatch = useDispatch<Dispatch>();
+
   const { show, visiable, hide } = useRootStore().visiibleStore;
   const products = useRootStore().productStore;
+
   const Submit = () => {
     show("order");
     hide("basket");
   };
-
-  const dispatch = useDispatch<Dispatch>();
 
   useEffect(() => {
     dispatch.basketSlice.getAddCard();
@@ -34,6 +35,9 @@ const Basket = () => {
 
   const { cardList } = useSelector((state: RootState) => state.basketSlice);
   const { priceList } = useSelector((state: RootState) => state.basketSlice);
+  const { userList } = useSelector((state: RootState) => state.profileSlice);
+
+  console.log({ priceList });
 
   return (
     <>
@@ -48,7 +52,12 @@ const Basket = () => {
         >
           <div className={styles.header}>
             <Title fontSize="22px" title="Корзина" />
-            <div style={{ cursor: "pointer" }} onClick={() => hide("basket")}>
+            <div
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => hide("basket")}
+            >
               <CloseIcon />
             </div>
           </div>
@@ -96,7 +105,7 @@ const Basket = () => {
           <div className={styles.bottomBox}>
             <div className={styles.total}>
               <Title
-                title="Итого:"
+                title="Итого сумма покупки:"
                 fontSize="22px"
                 style={{ marginRight: "10px" }}
               />
@@ -108,11 +117,39 @@ const Basket = () => {
                 color={COLORS.orange}
               />
             </div>
+            <div className={styles.total}>
+              <Title
+                title="Остаток денежных средств:"
+                fontSize="22px"
+                style={{ marginRight: "10px" }}
+              />
+              <Title
+                title={
+                  `${userList?.balance?.toLocaleString("ru-RU")} сум` || ""
+                }
+                fontSize="22px"
+                color={COLORS.orange}
+              />
+            </div>
+            <div className={styles.total}>
+              <Title
+                title="Остаток лимита:"
+                fontSize="22px"
+                style={{ marginRight: "10px" }}
+              />
+              <Title
+                title={
+                  `${userList?.limit_summa?.toLocaleString("ru-RU")} сум` || ""
+                }
+                fontSize="22px"
+                color={COLORS.orange}
+              />
+            </div>
             <Button
               btnSize="large"
               btnType="primary"
               title="Перейти к оформлению"
-              disabled={products.chosedProducts.length === 0 ? true : false}
+              disabled={cardList.length === 0 ? true : false}
               onPress={() => Submit()}
               style={{ width: "100%" }}
             />

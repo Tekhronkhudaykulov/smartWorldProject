@@ -1,9 +1,9 @@
 .container{
     height: 100vh;
     width: 100%;
-   /* display: flex;
+   display: flex;
    flex-direction: column;
-   justify-content: space-around; */
+   justify-content: space-around;
 }
 
 .logoBox {
@@ -19,4 +19,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+
+.containerSlider {
+        width: 90%;
+        border-radius: 16px;
+        background-color: #FF9C20;
+        height: 250px;
+        overflow: hidden;
 }

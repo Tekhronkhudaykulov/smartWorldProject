@@ -16,10 +16,10 @@ const ConfirmOrder = () => {
   const dispatch = useDispatch<Dispatch>();
 
   const Submit = () => {
-    // dispatch.orderSlice.orderSend({ shop_id: 1 });
-    navigation(APP_ROUTES.TRANSACTION);
+    dispatch.orderSlice.orderSend({ shop_id: 1 });
     hide("order");
     hide("confirmOrder");
+    // navigation(APP_ROUTES.TRANSACTION);
   };
   const BackOrder = () => {
     hide("confirmOrder");

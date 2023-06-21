@@ -1,6 +1,6 @@
 .container {
-    text-align: center;
-    width: 58px;
+    text-align: -webkit-right;
+    width: 56px;
 }
 
 .primary{
@@ -16,8 +16,8 @@
 }
 .outline{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-end;
     width: 56px;
     height: 56px;
     border: 1px solid #FF9C20;

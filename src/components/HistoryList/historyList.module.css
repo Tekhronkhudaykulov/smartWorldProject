@@ -23,9 +23,13 @@
     border-radius: 10px;
     margin: 5px 0;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 0;
 }
 
 .list{
     flex: 1;
     padding: 10px 30px;
+   
 }

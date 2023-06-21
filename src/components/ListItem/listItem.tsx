@@ -47,6 +47,7 @@ const ListItem: React.FC<Props> = ({
           <Title
             title={`${price?.toLocaleString("ru-RU")} сум`}
             fontSize="15px"
+            style={{ color: "#FF9C20" }}
           />
           <IconComp
             iconType="outline"

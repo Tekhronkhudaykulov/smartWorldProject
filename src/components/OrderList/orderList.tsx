@@ -27,6 +27,7 @@ const OrderList = () => {
         <GreyText text="Товары" style={{ flex: 4 }} />
         <GreyText text="Кол-во" style={{ flex: 1 }} />
         <GreyText text="Цена" style={{ flex: 1 }} />
+        <GreyText text="Итоговая сумма" style={{ flex: 1 }} />
         {/* <GreyText text="Цена" style={{ flex: 1 }} /> */}
       </div>
       {cardList.map((e, index) => {
@@ -37,6 +38,12 @@ const OrderList = () => {
             </div>
             <div className={styles.same}>
               <Text text={e.amount} style={{ marginLeft: "15px" }} />
+            </div>
+            <div className={styles.same}>
+              <Title
+                title={`${e.price?.toLocaleString("ru-RU")} сум`}
+                fontSize="15px"
+              />
             </div>
             <div className={styles.same}>
               <Title

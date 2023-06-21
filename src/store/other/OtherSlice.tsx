@@ -1,5 +1,4 @@
-import { api } from "../../contants/API";
-import { configToken } from "../../contants/API";
+import { $api } from "../../contants/API";
 import { createModel } from "@rematch/core";
 import { RootModel } from "../modals";
 import { initialState } from "./state";
@@ -14,19 +13,26 @@ export const OtherSlice = createModel<RootModel>()({
         sliderList: payload,
       };
     },
+    setSliderNotToken: (state, payload: getSlider[]) => {
+      return {
+        ...state,
+        sliderListNotToken: payload,
+      };
+    },
   },
 
   effects: (dispatch) => ({
     async getSliderLoad() {
       try {
-        const { data } = await api.get(
-          "v1/slider/index?shop_id=1",
-          configToken
-        );
+        const { data } = await $api.get("v1/slider/index?shop_id=1");
         dispatch.OtherSlice.setSlider(data.data);
-      } catch (e) {
-        alert(e);
-      }
+      } catch (e) {}
+    },
+    async getSliderNotToken() {
+      try {
+        const { data } = await $api.get("v1/main-slider/index");
+        dispatch.OtherSlice.setSliderNotToken(data.data);
+      } catch (e) {}
     },
   }),
 });

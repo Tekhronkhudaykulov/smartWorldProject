@@ -9,10 +9,13 @@ import {
 import {
   CaseIcon,
   Cash,
+  Exit,
   HeartOutline,
   HeartPrimary,
   Limit,
+  Logout,
   SearchIcon,
+  User,
 } from "../../../../assets/icons";
 import Banner from "../../../../components/Banner/banner";
 import Basket from "../../../../components/Basket/basket";
@@ -31,6 +34,9 @@ import { APP_ROUTES } from "../../../../router/Route";
 import styles from "./market.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../../../store";
+import Modal from "../../../../components/Modal/modal";
+import Title from "../../../../components/Title/title";
+import PaginationBox from "../../../../components/Pagination/pagination";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -38,7 +44,7 @@ const Market = () => {
   const productStore = useRootStore().productStore;
 
   const OnBuy = (item: any) => {
-    show("order");
+    show("basket");
     dispatch.basketSlice.addCard({ product_id: item.id });
   };
 
@@ -54,49 +60,58 @@ const Market = () => {
   }, []);
 
   const { productList } = useSelector((state: RootState) => state.productSlice);
+
   const { userList } = useSelector((state: RootState) => state.profileSlice);
+
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.models.profileSlice
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = productList.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
   return (
     <>
-      <div className={styles.container}>
-        <ContentComp />
-        <div className={styles.filterBox}>
-          <div className={styles.filterLeft}>
-            <Input
-              style={{
-                width: "300px",
-                height: "60px",
-              }}
-              iconUrl={<SearchIcon />}
-              placohlder="Поиск"
-            />
-            <ItemComp
-              icon={<Cash />}
-              title="Остаток денежных средств:"
-              text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
-              textColor={COLORS.orange}
-              style={{ marginLeft: "30px" }}
-            />
-            <ItemComp
-              icon={<Limit />}
-              title="Остаток по лимиту:"
-              text={
-                `${userList.limit_summa?.toLocaleString("ru-RU")} сум` || ""
-              }
-              textColor={COLORS.crimson}
-              style={{ marginLeft: "30px" }}
-              iconBack={COLORS.crimson}
-            />
-          </div>
-          <IconComp
-            iconType="primary"
-            onPress={() => show("basket")}
-            icon={<CaseIcon />}
-          />
+      {isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <p style={{ fontSize: "30px" }}>Loading...</p>
         </div>
-        <div className={styles.content}>
-          <div className={styles.category}>
-            <Category />
+      ) : (
+        <div className={styles.container}>
+          <ContentComp isHas={true} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+              marginLeft: "100px",
+            }}
+          >
+            <Title title={userList.full_name || ""} fontSize="28px" />
+          </div>
+
+          {/* <div
+            className={styles.filterBox}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
             <Button
               btnSize="large"
               btnType="outline"
@@ -106,38 +121,168 @@ const Market = () => {
                 fontSize: "15px",
                 height: "50px",
               }}
-              title="Избранное"
-              onPress={() => navigation(APP_ROUTES.FAVORITES)}
+              title="Перейти в магазин"
+              onPress={() => navigation(APP_ROUTES.MAIN)}
+            />
+            <Button
+              btnSize="large"
+              btnType="outline"
+              style={{
+                width: "200px",
+                marginTop: "20px",
+                fontSize: "15px",
+                height: "50px",
+              }}
+              title="Корзина"
+              onPress={() => show("basket")}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                marginLeft: "auto",
+                border: "1px solid #FF9C20",
+                borderRadius: "8px",
+                width: "200px",
+                cursor: "pointer",
+              }}
+            >
+              <User />
+              <Button
+                btnSize="large"
+                btnType="outline"
+                style={{
+                  border: "none",
+                  fontSize: "15px",
+                  height: "50px",
+                  width: "unset",
+                }}
+                title="Личный кабинет"
+                onPress={() => navigation(APP_ROUTES.MAIN)}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                border: "1px solid #FF9C20",
+                borderRadius: "8px",
+                width: "200px",
+                cursor: "pointer",
+              }}
+            >
+              <Button
+                btnSize="large"
+                btnType="outline"
+                style={{
+                  border: "none",
+                  fontSize: "15px",
+                  height: "50px",
+                  width: "unset",
+                }}
+                title="Выйти из системы"
+                onPress={() => logout()}
+              />
+              <Logout />
+            </div>
+          </div> */}
+          <div className={styles.filterBox}>
+            <div className={styles.filterLeft}>
+              <Input
+                style={{
+                  width: "300px",
+                  height: "60px",
+                }}
+                iconUrl={<SearchIcon />}
+                placohlder="Поиск"
+              />
+              <ItemComp
+                icon={<Cash />}
+                title="Остаток денежных средств:"
+                text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
+                textColor={COLORS.orange}
+                style={{ marginLeft: "30px" }}
+              />
+              <ItemComp
+                icon={<Limit />}
+                title="Остаток по лимиту:"
+                text={
+                  `${
+                    userList.limit_summa === null
+                      ? "0"
+                      : userList.limit_summa?.toLocaleString("ru-RU")
+                  } сум` || ""
+                }
+                textColor={COLORS.crimson}
+                style={{ marginLeft: "30px" }}
+                iconBack={COLORS.crimson}
+              />
+            </div>
+            <IconComp
+              iconType="primary"
+              onPress={() => show("basket")}
+              icon={<CaseIcon />}
             />
           </div>
-          <div className={styles.productBox}>
-            {productList.map((e, index) => {
-              return (
-                <ProductItem
-                  key={index}
-                  imgUrl={e.image}
-                  heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
-                  onHeartPress={() =>
-                    dispatch.basketSlice.addFavorite({
-                      shop_id: 1,
-                      product_id: e.id,
-                    })
-                  }
-                  name={e.name}
-                  price={`${e.price?.toLocaleString("ru-RU")} сум`}
-                  // discount={`${e.discount} сум`}
-                  count={e.amount}
-                  onBuyPress={() => OnBuy(e)}
-                  // onBasketPress={() => productStore.addProducts(e)}
-                />
-              );
-            })}
+          <div className={styles.content}>
+            <div className={styles.category}>
+              <Category />
+              <Button
+                btnSize="large"
+                btnType="outline"
+                style={{
+                  width: "200px",
+                  marginTop: "20px",
+                  fontSize: "15px",
+                  height: "50px",
+                }}
+                title="Избранное"
+                onPress={() => navigation(APP_ROUTES.FAVORITES)}
+              />
+            </div>
+            <div className={styles.productBox}>
+              {currentPosts.map((e, index) => {
+                return (
+                  <ProductItem
+                    key={index}
+                    imgUrl={e.image}
+                    heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
+                    onHeartPress={() =>
+                      dispatch.basketSlice.addFavorite({
+                        shop_id: 1,
+                        product_id: e.id,
+                      })
+                    }
+                    name={e.name}
+                    price={`${e.price?.toLocaleString("ru-RU")} сум`}
+                    // discount={`${e.discount} сум`}
+                    count={e.amount}
+                    onBuyPress={() => OnBuy(e)}
+                    onBasketPress={() =>
+                      dispatch.basketSlice.add({ product_id: e.id })
+                    }
+                    // onBasketPress={() => productStore.addProducts(e)}
+                  />
+                );
+              })}
+            </div>
           </div>
+          <div className={styles.pagination}>
+            <PaginationBox
+              postsPerPage={postsPerPage}
+              totalPosts={productList.length}
+              paginate={paginate}
+            />
+          </div>
+          <Basket />
+          <Order />
+          <ConfirmOrder />
         </div>
-        <Basket />
-        <Order />
-        <ConfirmOrder />
-      </div>
+      )}
     </>
   );
 };

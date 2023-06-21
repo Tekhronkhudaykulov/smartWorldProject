@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { COLORS } from "../../constants/colors";
 import Text from "../Text/text";
 import Title from "../Title/title";
@@ -8,7 +8,14 @@ import { Dispatch, RootState } from "../../store";
 
 const HistoryList = () => {
   const dispatch = useDispatch<Dispatch>();
+
+  useEffect(() => {
+    dispatch.orderSlice.getOrderLoad();
+  }, []);
+
   const { ordersList } = useSelector((state: RootState) => state.orderSlice);
+  console.log(ordersList);
+
   return (
     <div className={styles.container}>
       <div className={styles.topBox}>
@@ -36,66 +43,22 @@ const HistoryList = () => {
           <Text text="Расход" style={{ color: COLORS.white }} />
         </div>
       </div>
-      <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
-        <div className={styles.list}>
-          <Text text="27.03.2022" />
+      {ordersList.map((item) => (
+        <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
+          <div className={styles.list}>
+            <Text text={item.created_at} />
+          </div>
+          <div className={styles.list}>
+            <Text text={item?.payment_type} />
+          </div>
+          <div className={styles.list}>
+            <Text text={`${item.income} сум`} />
+          </div>
+          <div className={styles.list}>
+            <Text text={`${item.outcome} сум`} />
+          </div>
         </div>
-        <div className={styles.list}>
-          <Text text="Зарплата" />
-        </div>
-        <div className={styles.list}>
-          <Text text="10.000 сум" />
-        </div>
-        <div className={styles.list}>{/* <Text text='Расход' /> */}</div>
-      </div>
-      <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
-        <div className={styles.list}>
-          <Text text="27.03.2022" />
-        </div>
-        <div className={styles.list}>
-          <Text text="Операция" />
-        </div>
-        <div className={styles.list}>{/* <Text text='Приход' /> */}</div>
-        <div className={styles.list}>
-          <Text text="1.000 сум" />
-        </div>
-      </div>
-      <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
-        <div className={styles.list}>
-          <Text text="27.03.2022" />
-        </div>
-        <div className={styles.list}>
-          <Text text="Операция" />
-        </div>
-        <div className={styles.list}>{/* <Text text='Приход' /> */}</div>
-        <div className={styles.list}>
-          <Text text="1.000 сум" />
-        </div>
-      </div>
-      <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
-        <div className={styles.list}>
-          <Text text="27.03.2022" />
-        </div>
-        <div className={styles.list}>
-          <Text text="Операция" />
-        </div>
-        <div className={styles.list}>{/* <Text text='Приход' /> */}</div>
-        <div className={styles.list}>
-          <Text text="1.000 сум" />
-        </div>
-      </div>
-      <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
-        <div className={styles.list}>
-          <Text text="27.03.2022" />
-        </div>
-        <div className={styles.list}>
-          <Text text="Операция" />
-        </div>
-        <div className={styles.list}>{/* <Text text='Приход' /> */}</div>
-        <div className={styles.list}>
-          <Text text="1.000 сум" />
-        </div>
-      </div>
+      ))}
       <div
         className={styles.listBox}
         style={{ backgroundColor: COLORS.orange }}

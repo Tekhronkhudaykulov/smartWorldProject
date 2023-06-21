@@ -1,0 +1,36 @@
+.MuiButtonBase-root {
+    background: #FF9C20;
+    color: white;
+}
+
+.MuiButtonBase-root:active{
+    background: #FF9C20;
+    color: white;
+}
+
+.css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+    color: #FF9C20;
+    background: white;
+}
+
+
+.pagination {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.page-item{
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #FF9C20;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: #FF9C20;
+}
+
+.page-item.active {
+    background: #FF9C20;
+    color: #fff;
+}
+

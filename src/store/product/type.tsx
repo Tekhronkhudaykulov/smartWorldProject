@@ -13,4 +13,5 @@ export type GetProductList = {
 export type InitialState = {
   productList: GetProductList[];
   productById: GetProductList | {};
+  products: {};
 };

@@ -26,7 +26,19 @@ const Banner = () => {
         }}
       >
         {sliderList.map((item) => (
-          <img className={styles.bannerImg} src={`${baseUrl}/${item.path}`} />
+          <>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)",
+                fontSize: "32px",
+                color: "#fff",
+              }}
+            ></div>
+            <img className={styles.bannerImg} src={`${baseUrl}/${item.path}`} />
+          </>
         ))}
       </Carousel>
     </div>

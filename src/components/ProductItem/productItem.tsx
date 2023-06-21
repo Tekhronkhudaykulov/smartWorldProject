@@ -33,6 +33,7 @@ const ProductItem = ({
   onBasketPress,
   onBuyPress,
 }: Props) => {
+  console.log({ count });
   return (
     <div className={styles.container}>
       <div className={styles.imgBox}>
@@ -55,7 +56,7 @@ const ProductItem = ({
         <Button
           btnSize="small"
           btnType="primary"
-          title="Купить"
+          title="В корзину"
           onPress={onBuyPress}
         />
         <IconComp

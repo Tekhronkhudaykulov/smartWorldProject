@@ -35,68 +35,93 @@ const MainView = () => {
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
 
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.models.profileSlice
+  );
+  const logout = () => {
+    localStorage.clear();
+    navigation(APP_ROUTES.WELCOME);
+  };
+
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <div>
-            <Title title={userList.full_name || ""} fontSize="28px" />
-            <GreyText text="Понедельник, 2 февраля 2023" />
+      {isLoading ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <p style={{ fontSize: "30px" }}>Loading...</p>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <div>
+              <Title title={userList.full_name || ""} fontSize="28px" />
+              <GreyText text="Понедельник, 2 февраля 2023" />
+            </div>
+            <IconComp
+              iconType="primary"
+              onPress={() => logout()}
+              icon={<ArrowRight />}
+            />
           </div>
-          <IconComp
-            iconType="primary"
-            onPress={() => navigation(APP_ROUTES.WELCOME)}
-            icon={<ArrowRight />}
-          />
+          <div className={styles.info}>
+            <InfoComp
+              title={`${userList.balance?.toLocaleString("ru-RU")} сум`}
+              text="Остаток денежных средств"
+              titleColor={COLORS.green}
+            />
+            <InfoComp
+              title={`${userList.limit_summa?.toLocaleString("ru-RU")}` || ""}
+              text="Лимит на месяц"
+              titleColor={COLORS.orange}
+            />
+            <InfoComp
+              title={`${userList.limit_summa?.toLocaleString("ru-RU")}` || ""}
+              text="Остаток по лимиту"
+              titleColor={COLORS.crimson}
+            />
+            <InfoComp
+              title="10 минут"
+              text="Остаток по видеозвонкам"
+              titleColor={COLORS.blue}
+            />
+            <InfoComp
+              title="10 минут"
+              text="Остаток по звонкам"
+              titleColor={COLORS.darkBlue}
+            />
+          </div>
+          <div className={styles.category}>
+            <Card
+              icon={<CaseLarge />}
+              text="Магазин"
+              onPress={() => navigation(APP_ROUTES.MARKET)}
+            />
+
+            <Card icon={<Mobile />} text="Аудиозвонки" />
+
+            <Card icon={<VideoCall />} text="Видеозвонки" />
+
+            <Card icon={<Person />} text="Омбудсман" />
+
+            <Card icon={<Warn />} text="Мадад" />
+          </div>
+          <div className={styles.footer}>
+            <Button
+              style={{ width: "350px" }}
+              onPress={() => navigation(APP_ROUTES.TRANSACTION)}
+              btnSize="large"
+              btnType="primary"
+              title="История транзакций"
+            />
+          </div>
         </div>
-        <div className={styles.info}>
-          <InfoComp
-            title={`${userList.balance?.toLocaleString("ru-RU")} сум`}
-            text="Остаток денежных средств"
-            titleColor={COLORS.green}
-          />
-          <InfoComp
-            title={`${userList.limit_summa?.toLocaleString("ru-RU")} сум`}
-            text="Лимит на месяц"
-            titleColor={COLORS.orange}
-          />
-          <InfoComp
-            title={`${userList.limit_summa?.toLocaleString("ru-RU")} сум`}
-            text="Остаток по лимиту"
-            titleColor={COLORS.crimson}
-          />
-          <InfoComp
-            title="10 минут"
-            text="Остаток по видеозвонкам"
-            titleColor={COLORS.blue}
-          />
-          <InfoComp
-            title="10 минут"
-            text="Остаток по звонкам"
-            titleColor={COLORS.darkBlue}
-          />
-        </div>
-        <div className={styles.category}>
-          <Card
-            icon={<CaseLarge />}
-            text="Магазин"
-            onPress={() => navigation(APP_ROUTES.MARKET)}
-          />
-          <Card icon={<Mobile />} text="Аудиозвонки" />
-          <Card icon={<VideoCall />} text="Видеозвонки" />
-          <Card icon={<Person />} text="Омбудсман" />
-          <Card icon={<Warn />} text="Мадад" />
-        </div>
-        <div className={styles.footer}>
-          <Button
-            style={{ width: "350px" }}
-            onPress={() => navigation(APP_ROUTES.TRANSACTION)}
-            btnSize="large"
-            btnType="primary"
-            title="История транзакций"
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 };

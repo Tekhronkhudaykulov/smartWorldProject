@@ -6,4 +6,5 @@ export type getSlider = {
 
 export type InitialState = {
   sliderList: getSlider[];
+  sliderListNotToken: getSlider[];
 };

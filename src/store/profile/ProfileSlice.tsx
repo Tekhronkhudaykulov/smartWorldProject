@@ -1,5 +1,4 @@
-import { api } from "../../contants/API";
-import { configToken } from "../../contants/API";
+import { $api } from "../../contants/API";
 import { createModel } from "@rematch/core";
 import { RootModel } from "../modals";
 import { initialState } from "./state";
@@ -14,15 +13,19 @@ export const profileSlice = createModel<RootModel>()({
         userList: payload,
       };
     },
+    setToken: (state, payload) => {
+      return {
+        ...state,
+        token: payload,
+      };
+    },
   },
   effects: (dispatch) => ({
     async getUser() {
       try {
-        const { data } = await api.get("v1/user/info", configToken);
+        const { data } = await $api.get("v1/user/info");
         dispatch.profileSlice.setUser(data);
-      } catch (e) {
-        alert(e);
-      }
+      } catch (e) {}
     },
   }),
 });
