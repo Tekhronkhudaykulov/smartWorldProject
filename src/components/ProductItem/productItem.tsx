@@ -33,7 +33,6 @@ const ProductItem = ({
   onBasketPress,
   onBuyPress,
 }: Props) => {
-  console.log({ count });
   return (
     <div className={styles.container}>
       <div className={styles.imgBox}>

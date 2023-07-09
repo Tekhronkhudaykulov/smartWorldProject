@@ -14,7 +14,7 @@ const HistoryList = () => {
   }, []);
 
   const { ordersList } = useSelector((state: RootState) => state.orderSlice);
-  console.log(ordersList);
+  const { getAllOrders } = useSelector((state: RootState) => state.orderSlice);
 
   return (
     <div className={styles.container}>
@@ -23,7 +23,13 @@ const HistoryList = () => {
           <Title fontSize="17px" title="Остаток на начало месяца:" />
         </div>
         <div className={styles.top}>
-          <Title fontSize="17px" title="500.000 сум" color={COLORS.orange} />
+          <Title
+            fontSize="17px"
+            title={
+              getAllOrders?.summa_begin_month?.toLocaleString("ru-RU") || ""
+            }
+            color={COLORS.orange}
+          />
         </div>
       </div>
       <div
@@ -46,16 +52,22 @@ const HistoryList = () => {
       {ordersList.map((item) => (
         <div className={styles.listBox} style={{ borderColor: COLORS.orange }}>
           <div className={styles.list}>
-            <Text text={item.created_at} />
+            <Text text={item.created_at?.toLocaleString("ru-RU")} />
           </div>
           <div className={styles.list}>
             <Text text={item?.payment_type} />
           </div>
           <div className={styles.list}>
-            <Text text={`${item.income} сум`} />
+            <Text text={`${item.income?.toLocaleString("ru-RU")} `} />
           </div>
           <div className={styles.list}>
-            <Text text={`${item.outcome} сум`} />
+            <Text
+              text={
+                item.outcome === null
+                  ? "-"
+                  : item.outcome?.toLocaleString("ru-RU")
+              }
+            />
           </div>
         </div>
       ))}
@@ -70,18 +82,28 @@ const HistoryList = () => {
           {/* <Text text='Операция' style={{ color: COLORS.white }} /> */}
         </div>
         <div className={styles.list}>
-          <Text text="60.000 сум" style={{ color: COLORS.white }} />
+          <Text
+            text={getAllOrders.summa_income?.toLocaleString("ru-RU") || ""}
+            style={{ color: COLORS.white }}
+          />
         </div>
         <div className={styles.list}>
-          <Text text="14.000 сум" style={{ color: COLORS.white }} />
+          <Text
+            text={getAllOrders.summa_outcome?.toLocaleString("ru-RU") || ""}
+            style={{ color: COLORS.white }}
+          />
         </div>
       </div>
       <div className={styles.total}>
         <div className={styles.top}>
-          <Title fontSize="17px" title="Остаток на начало месяца:" />
+          <Title fontSize="17px" title="Остаток на конец периода:" />
         </div>
         <div className={styles.top}>
-          <Title fontSize="17px" title="500.000 сум" color={COLORS.orange} />
+          <Title
+            fontSize="17px"
+            title={getAllOrders?.summa_end_month?.toLocaleString("ru-RU") || ""}
+            color={COLORS.orange}
+          />
         </div>
       </div>
     </div>

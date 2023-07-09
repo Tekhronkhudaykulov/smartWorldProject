@@ -27,5 +27,10 @@ export const profileSlice = createModel<RootModel>()({
         dispatch.profileSlice.setUser(data);
       } catch (e) {}
     },
+    async logout() {
+      try {
+        const { data } = await $api.get("v1/user/log-out");
+      } catch (e) {}
+    },
   }),
 });

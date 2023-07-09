@@ -23,6 +23,7 @@ import { APP_ROUTES } from "../../../../router/Route";
 import styles from "./main.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
+import Check from "../../../../components/Check/Check";
 
 const MainView = () => {
   const navigation = useNavigate();
@@ -31,15 +32,19 @@ const MainView = () => {
 
   useEffect(() => {
     dispatch.profileSlice.getUser();
+    dispatch.basketSlice.getAddCard();
   }, []);
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
+
+  const { priceList } = useSelector((state: RootState) => state.basketSlice);
 
   const isLoading = useSelector(
     (state: RootState) => state.loading.models.profileSlice
   );
   const logout = () => {
     localStorage.clear();
+    dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
   };
 
@@ -71,17 +76,17 @@ const MainView = () => {
           </div>
           <div className={styles.info}>
             <InfoComp
-              title={`${userList.balance?.toLocaleString("ru-RU")} сум`}
+              title={`${priceList.balance?.toLocaleString("ru-RU")} сум`}
               text="Остаток денежных средств"
               titleColor={COLORS.green}
             />
             <InfoComp
-              title={`${userList.limit_summa?.toLocaleString("ru-RU")}` || ""}
+              title={`${priceList.limit_summa?.toLocaleString("ru-RU")}` || ""}
               text="Лимит на месяц"
               titleColor={COLORS.orange}
             />
             <InfoComp
-              title={`${userList.limit_summa?.toLocaleString("ru-RU")}` || ""}
+              title={`${priceList.limit_summa?.toLocaleString("ru-RU")}` || ""}
               text="Остаток по лимиту"
               titleColor={COLORS.crimson}
             />
@@ -106,10 +111,24 @@ const MainView = () => {
             <Card icon={<Mobile />} text="Аудиозвонки" />
 
             <Card icon={<VideoCall />} text="Видеозвонки" />
-
-            <Card icon={<Person />} text="Омбудсман" />
-
-            <Card icon={<Warn />} text="Мадад" />
+            <a
+              style={{
+                textDecoration: "none",
+              }}
+              href="https://ombudsman.uz/uz"
+              target="_blank"
+            >
+              <Card icon={<Person />} text="Омбудсман" />
+            </a>
+            <a
+              style={{
+                textDecoration: "none",
+              }}
+              href="https://advice.uz/uz"
+              target="_blank"
+            >
+              <Card icon={<Warn />} text="Мадад" />
+            </a>
           </div>
           <div className={styles.footer}>
             <Button
@@ -120,6 +139,7 @@ const MainView = () => {
               title="История транзакций"
             />
           </div>
+          {/* <Check /> */}
         </div>
       )}
     </>

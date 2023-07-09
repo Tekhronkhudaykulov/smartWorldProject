@@ -13,8 +13,8 @@ import { ASSETS } from "../../constants/requireAssets";
 import OrderList from "../OrderList/orderList";
 import Button from "../Button/button";
 import SelectComp from "../SelectComp/selectComp";
-import { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
 import IconComp from "../IconComp/iconComp";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { APP_ROUTES } from "../../router/Route";
@@ -32,10 +32,14 @@ const Order = () => {
 
   const navigation = useNavigate();
 
+  const dispatch = useDispatch<Dispatch>();
+
   const logout = () => {
     localStorage.clear();
+    dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
   };
+
   return (
     <div
       className={styles.container}
@@ -145,7 +149,10 @@ const Order = () => {
                 btnSize="large"
                 btnType="outline"
                 title="В общий магазин"
-                onPress={() => hide("order")}
+                onPress={() => {
+                  hide("order");
+                  navigation(APP_ROUTES.MARKET);
+                }}
               />
               <Button
                 style={{ marginRight: "20px", width: "350px" }}

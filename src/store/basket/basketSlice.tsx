@@ -33,7 +33,6 @@ export const basketSlice = createModel<RootModel>()({
           "v1/product/set-favorite?shop_id=1",
           payload
         );
-        dispatch.productSlice.getProduct();
         await dispatch.basketSlice.getFavourite();
       } catch (e) {}
     },
@@ -47,7 +46,9 @@ export const basketSlice = createModel<RootModel>()({
     async addCard(payload) {
       try {
         const { data } = await $api.post("v1/cart/add", payload);
-        dispatch.basketSlice.getAddCard();
+        await dispatch.basketSlice.getAddCard();
+        dispatch.productSlice.getProduct("");
+        dispatch.basketSlice.getFavourite();
       } catch (e) {}
     },
 
@@ -83,6 +84,8 @@ export const basketSlice = createModel<RootModel>()({
     async add(payload) {
       try {
         const { data } = await $api.post("v1/cart/add", payload);
+        dispatch.productSlice.getProduct("");
+        dispatch.basketSlice.getFavourite();
       } catch (e) {}
     },
   }),

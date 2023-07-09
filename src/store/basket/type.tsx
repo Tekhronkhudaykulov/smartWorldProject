@@ -6,6 +6,7 @@ export type getFavourite = {
   price: number | string;
   discount: number | string;
   amount: number;
+  amount_in_cart: string | number;
 };
 
 export type getAddCard = {
@@ -13,6 +14,8 @@ export type getAddCard = {
   amount: number;
   price: number;
   total_price: number;
+  limit_summa: number;
+  balance: number;
   product: {
     id: number;
     name: string;

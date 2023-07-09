@@ -44,7 +44,7 @@ const Market = () => {
   const productStore = useRootStore().productStore;
 
   const OnBuy = (item: any) => {
-    show("basket");
+    // show("basket");
     dispatch.basketSlice.addCard({ product_id: item.id });
   };
 
@@ -55,11 +55,14 @@ const Market = () => {
   const dispatch = useDispatch<Dispatch>();
 
   useEffect(() => {
-    dispatch.productSlice.getProduct();
+    dispatch.productSlice.getProduct("");
     dispatch.profileSlice.getUser();
+    dispatch.basketSlice.getAddCard();
   }, []);
 
   const { productList } = useSelector((state: RootState) => state.productSlice);
+
+  const { priceList } = useSelector((state: RootState) => state.basketSlice);
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
 
@@ -192,45 +195,6 @@ const Market = () => {
           </div> */}
           <div className={styles.filterBox}>
             <div className={styles.filterLeft}>
-              <Input
-                style={{
-                  width: "300px",
-                  height: "60px",
-                }}
-                iconUrl={<SearchIcon />}
-                placohlder="Поиск"
-              />
-              <ItemComp
-                icon={<Cash />}
-                title="Остаток денежных средств:"
-                text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
-                textColor={COLORS.orange}
-                style={{ marginLeft: "30px" }}
-              />
-              <ItemComp
-                icon={<Limit />}
-                title="Остаток по лимиту:"
-                text={
-                  `${
-                    userList.limit_summa === null
-                      ? "0"
-                      : userList.limit_summa?.toLocaleString("ru-RU")
-                  } сум` || ""
-                }
-                textColor={COLORS.crimson}
-                style={{ marginLeft: "30px" }}
-                iconBack={COLORS.crimson}
-              />
-            </div>
-            <IconComp
-              iconType="primary"
-              onPress={() => show("basket")}
-              icon={<CaseIcon />}
-            />
-          </div>
-          <div className={styles.content}>
-            <div className={styles.category}>
-              <Category />
               <Button
                 btnSize="large"
                 btnType="outline"
@@ -243,6 +207,57 @@ const Market = () => {
                 title="Избранное"
                 onPress={() => navigation(APP_ROUTES.FAVORITES)}
               />
+              {/* <Input
+                style={{
+                  width: "300px",
+                  height: "60px",
+                }}
+                iconUrl={<SearchIcon />}
+                placohlder="Поиск"
+              /> */}
+              <ItemComp
+                icon={<Cash />}
+                title="Остаток денежных средств:"
+                text={`${priceList.balance?.toLocaleString("ru-RU")} сум` || ""}
+                textColor={COLORS.orange}
+                style={{ marginLeft: "30px" }}
+              />
+              <ItemComp
+                icon={<Limit />}
+                title="Остаток по лимиту:"
+                text={
+                  `${
+                    priceList.limit_summa === null
+                      ? "0"
+                      : priceList.limit_summa?.toLocaleString("ru-RU")
+                  } сум` || ""
+                }
+                textColor={COLORS.crimson}
+                style={{ marginLeft: "30px" }}
+                iconBack={COLORS.crimson}
+              />
+            </div>
+            <Button
+              btnSize="large"
+              btnType="outline"
+              style={{
+                width: "200px",
+                marginTop: "20px",
+                fontSize: "15px",
+                height: "50px",
+              }}
+              title="Корзина"
+              onPress={() => show("basket")}
+            />
+            {/* <IconComp
+              iconType="primary"
+              onPress={() => show("basket")}
+              icon={<CaseIcon />}
+            /> */}
+          </div>
+          <div className={styles.content}>
+            <div className={styles.category}>
+              <Category />
             </div>
             <div className={styles.productBox}>
               {currentPosts.map((e, index) => {
@@ -251,16 +266,16 @@ const Market = () => {
                     key={index}
                     imgUrl={e.image}
                     heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
-                    onHeartPress={() =>
+                    onHeartPress={() => {
                       dispatch.basketSlice.addFavorite({
                         shop_id: 1,
                         product_id: e.id,
-                      })
-                    }
+                      });
+                    }}
                     name={e.name}
                     price={`${e.price?.toLocaleString("ru-RU")} сум`}
                     // discount={`${e.discount} сум`}
-                    count={e.amount}
+                    count={e.amount_in_cart}
                     onBuyPress={() => OnBuy(e)}
                     onBasketPress={() =>
                       dispatch.basketSlice.add({ product_id: e.id })

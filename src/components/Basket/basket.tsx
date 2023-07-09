@@ -34,10 +34,10 @@ const Basket = () => {
   }, []);
 
   const { cardList } = useSelector((state: RootState) => state.basketSlice);
-  const { priceList } = useSelector((state: RootState) => state.basketSlice);
-  const { userList } = useSelector((state: RootState) => state.profileSlice);
 
-  console.log({ priceList });
+  const { priceList } = useSelector((state: RootState) => state.basketSlice);
+
+  const { userList } = useSelector((state: RootState) => state.profileSlice);
 
   return (
     <>
@@ -56,7 +56,10 @@ const Basket = () => {
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => hide("basket")}
+              onClick={() => {
+                hide("basket");
+                dispatch.productSlice.getProduct("");
+              }}
             >
               <CloseIcon />
             </div>
@@ -125,7 +128,7 @@ const Basket = () => {
               />
               <Title
                 title={
-                  `${userList?.balance?.toLocaleString("ru-RU")} сум` || ""
+                  `${priceList?.balance?.toLocaleString("ru-RU")} сум` || ""
                 }
                 fontSize="22px"
                 color={COLORS.orange}
@@ -139,12 +142,20 @@ const Basket = () => {
               />
               <Title
                 title={
-                  `${userList?.limit_summa?.toLocaleString("ru-RU")} сум` || ""
+                  `${priceList?.limit_summa?.toLocaleString("ru-RU")} сум` || ""
                 }
                 fontSize="22px"
                 color={COLORS.orange}
               />
             </div>
+            <Button
+              btnSize="large"
+              btnType="primary"
+              title="Перейти к оформлению"
+              disabled={cardList.length === 0 ? true : false}
+              onPress={() => Submit()}
+              style={{ opacity: 0, width: "100%" }}
+            />
             <Button
               btnSize="large"
               btnType="primary"

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
 
 const Category = () => {
-  const [category, setCategory] = useState(1);
+  const [category_id, setCategory] = useState(0);
 
   const dispatch = useDispatch<Dispatch>();
 
@@ -32,6 +32,20 @@ const Category = () => {
         />
       </div>
       <div className={styles.category}>
+        <GreyText
+          style={{
+            margin: "10px 0",
+            cursor: "pointer",
+
+            color: category_id === 0 ? COLORS.orange : COLORS.grey,
+          }}
+          hover={true}
+          text="Все"
+          onPress={() => {
+            dispatch.productSlice.getProduct("");
+            setCategory(0);
+          }}
+        />
         {categoryList.map((e, index) => {
           return (
             <GreyText
@@ -40,11 +54,14 @@ const Category = () => {
                 margin: "10px 0",
                 cursor: "pointer",
 
-                color: category === e.id ? COLORS.orange : COLORS.grey,
+                color: category_id === e.id ? COLORS.orange : COLORS.grey,
               }}
               hover={true}
               text={e.name}
-              onPress={() => setCategory(e.id)}
+              onPress={() => {
+                dispatch.productSlice.getProduct(e.id);
+                setCategory(e.id);
+              }}
             />
           );
         })}

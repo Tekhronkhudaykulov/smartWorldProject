@@ -2,7 +2,7 @@ import { $api } from "../../contants/API";
 import { createModel } from "@rematch/core";
 import { RootModel } from "../modals";
 import { initialState } from "./state";
-import { GetProductList } from "./type";
+import { GetProductList, MetaType } from "./type";
 
 export const productSlice = createModel<RootModel>()({
   state: initialState,
@@ -26,13 +26,22 @@ export const productSlice = createModel<RootModel>()({
         productList: payload,
       };
     },
+    setMeta: (state, payload) => {
+      return {
+        ...state,
+        meta: payload,
+      };
+    },
   },
   effects: (dispatch) => ({
-    async getProduct() {
+    async getProduct(category_id) {
       try {
-        const { data } = await $api.get(`v1/product/index?shop_id=1`);
+        const { data } = await $api.get(
+          `v1/product/index?shop_id=1&category_id=${category_id}`
+        );
 
         dispatch.productSlice.setProduct(data.data.data);
+        dispatch.productSlice.setMeta(data.data._meta);
       } catch (e) {}
     },
     async getProductById(id) {

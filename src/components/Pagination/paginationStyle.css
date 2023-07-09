@@ -34,3 +34,30 @@
     color: #fff;
 }
 
+.per, .next {
+    position: relative;
+    width: 20px;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 0px;
+
+}
+.next {
+    margin: 0 0;
+}
+
+.per:after{
+    content: "<";
+    font-size: 16px;
+    color:#FF9C20 ;
+}
+.next:after{
+    content: ">";
+    font-size: 16px;
+    color:#FF9C20 ;
+}
+

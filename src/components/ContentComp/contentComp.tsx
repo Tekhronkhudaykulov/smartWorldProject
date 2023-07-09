@@ -5,6 +5,8 @@ import { APP_ROUTES } from "../../router/Route";
 import Banner from "../Banner/banner";
 import IconComp from "../IconComp/iconComp";
 import styles from "./contentComp.module.css";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "../../store";
 
 interface Props {
   iconPress?: () => void;
@@ -13,6 +15,15 @@ interface Props {
 
 const ContentComp: React.FC<Props> = ({ iconPress, isHas }) => {
   const navigation = useNavigate();
+
+  const dispatch = useDispatch<Dispatch>();
+
+  const logout = () => {
+    localStorage.clear();
+    dispatch.profileSlice.logout();
+    navigation(APP_ROUTES.WELCOME);
+  };
+
   return (
     <div className={styles.header}>
       <div>
@@ -26,7 +37,7 @@ const ContentComp: React.FC<Props> = ({ iconPress, isHas }) => {
           <IconComp
             style={{ marginTop: "10px" }}
             iconType="primary"
-            onPress={() => navigation(APP_ROUTES.WELCOME)}
+            onPress={() => logout()}
             icon={<ArrowRight />}
             text="Выйти из системы"
           />

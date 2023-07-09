@@ -10,6 +10,31 @@ export type GetOrders = {
   outcome: number;
 };
 
+export type AllOrder = {
+  summa_begin_month: number;
+  summa_end_month: number;
+  summa_income: number;
+  summa_outcome: number;
+};
+
+export type getOrderListType = {
+  orderItems: [
+    {
+      count: number;
+      id: number;
+      price: number;
+      total_price: number;
+      product: {
+        name: string;
+      };
+    }
+  ];
+  created_at: string;
+  price: number;
+  total_price: number;
+};
 export type InitialState = {
   ordersList: GetOrders[];
+  getAllOrders: Partial<AllOrder>;
+  getOrderList: Partial<getOrderListType>;
 };

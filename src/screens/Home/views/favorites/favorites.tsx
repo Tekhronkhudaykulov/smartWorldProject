@@ -25,6 +25,7 @@ const Favorites = () => {
 
   useEffect(() => {
     dispatch.basketSlice.getFavourite();
+    dispatch.productSlice.getProduct("");
   }, []);
 
   const navigation = useNavigate();
@@ -35,7 +36,7 @@ const Favorites = () => {
 
   const OnBuy = (item: any) => {
     dispatch.basketSlice.addCard({ product_id: item.id });
-    show("basket");
+    // show("basket");
   };
 
   const removeFavourite = (item: any) => {
@@ -72,9 +73,9 @@ const Favorites = () => {
             height: "50px",
           }}
           title="Перейти в магазин"
-          onPress={() => navigation(APP_ROUTES.MAIN)}
+          onPress={() => navigation(APP_ROUTES.MARKET)}
         />
-        <Button
+        {/* <Button
           btnSize="large"
           btnType="outline"
           style={{
@@ -85,7 +86,7 @@ const Favorites = () => {
           }}
           title="Корзина"
           onPress={() => show("basket")}
-        />
+        /> */}
         <div
           style={{
             display: "flex",
@@ -143,7 +144,6 @@ const Favorites = () => {
       <div className={styles.productBox}>
         {favouriteList.length > 0 ? (
           favouriteList.map((e, index) => {
-            console.log(e);
             return (
               <ProductItem
                 key={index}
@@ -152,7 +152,7 @@ const Favorites = () => {
                 onHeartPress={() => removeFavourite(e)}
                 name={e.name}
                 price={`${e.price} сум`}
-                count={e.amount}
+                count={e.amount_in_cart}
                 onBuyPress={() => OnBuy(e)}
                 onBasketPress={() =>
                   dispatch.basketSlice.add({ product_id: e.id })
