@@ -10,7 +10,12 @@ let mainWindow;
 let workerWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
+    });
 
     mainWindow.loadURL('http://localhost:3000');
 
@@ -20,7 +25,12 @@ function createWindow() {
         mainWindow = null
     })
 
-    workerWindow = new BrowserWindow();
+    workerWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
+    });
     workerWindow.loadURL("file://" + __dirname + "/worker.html");
     workerWindow.webContents.openDevTools();
 
