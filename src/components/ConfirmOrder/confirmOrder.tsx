@@ -38,7 +38,8 @@ const ConfirmOrder = () => {
   };
 
   const handlePrint = () => {
-    const ipcRenderer = window.require("electron").ipcRenderer;
+    // @ts-ignore
+      const ipcRenderer = window.require("electron").ipcRenderer;
 
     // cannot send message to other windows directly https://github.com/electron/electron/issues/991
     function sendCommandToWorker(content: any) {

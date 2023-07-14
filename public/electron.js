@@ -9,19 +9,23 @@ const BrowserWindow = electron.BrowserWindow;
 const os = require("os");
 const fs = require("fs");
 const path = require('path');
+const isDev = require('electron-is-dev');
 
 let mainWindow;
 let workerWindow;
 
 function createWindow() {
+
     mainWindow = new BrowserWindow({
+        fullscreen: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
         }
     });
 
-    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
 
     mainWindow.on('closed', function () {
@@ -29,11 +33,13 @@ function createWindow() {
     })
 
     workerWindow = new BrowserWindow({
+        show: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
         }
     });
+
 
     workerWindow.loadURL("file://" + __dirname + "/worker.html");
 
