@@ -37,9 +37,16 @@ const ConfirmOrder = () => {
     // navigation(APP_ROUTES.TRANSACTION);
   };
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  const handlePrint = () => {
+    const ipcRenderer = require("electron").ipcRenderer;
+
+    // cannot send message to other windows directly https://github.com/electron/electron/issues/991
+    function sendCommandToWorker(content: any) {
+      ipcRenderer.send("printPDF", content);
+    }
+
+    sendCommandToWorker("<h1> hello </h1>");
+  };
 
   const BackOrder = () => {
     hide("confirmOrder");

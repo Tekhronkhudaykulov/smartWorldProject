@@ -2,6 +2,7 @@
   "name": "smart-world",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -24,6 +25,7 @@
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
     "nuka-carousel": "^5.5.1",
+    "pdf-to-printer": "^5.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.2.0",
@@ -47,7 +49,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:start": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": [
@@ -66,5 +69,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "electron": "^25.3.0",
+    "wait-on": "^7.0.1"
   }
 }
