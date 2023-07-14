@@ -2,7 +2,8 @@
   "name": "smart-world",
   "version": "0.1.0",
   "private": true,
-  "main": "electron/main",
+  "main": "src/main.js",
+  "homepage": "./",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -53,7 +54,7 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "electron:start": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron:build": "yarn build-electron && electron-builder build --publish never"
+    "electron:build": "yarn build-electron && electron-builder build --publish never -w"
   },
   "eslintConfig": {
     "extends": [
@@ -77,6 +78,7 @@
     "concurrently": "^8.2.0",
     "electron": "^25.3.0",
     "electron-builder": "^24.4.0",
+    "electron-packager": "^17.1.1",
     "wait-on": "^7.0.1"
   }
 }

@@ -1,10 +1,14 @@
 const {print} = require("pdf-to-printer");
 
-const {app, ipcMain, BrowserWindow} = require('electron');
+const {ipcMain} = require('electron');
+
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+
 const os = require("os");
 const fs = require("fs");
 const path = require('path');
-const url = require('url');
 
 let mainWindow;
 let workerWindow;
