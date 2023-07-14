@@ -11,12 +11,7 @@ import {
   render,
 } from "react-thermal-printer";
 const Check = () => {
-  const receipt = [
-    <Printer type="epson" width={42} characterSet="pc850_multilingual">
-      <Text size={{ width: 2, height: 2 }}>10000</Text>
-      <Br />
-    </Printer>,
-  ];
+  const receipt = [<div></div>];
   return <></>;
 };
 

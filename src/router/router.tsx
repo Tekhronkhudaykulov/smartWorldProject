@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Access from "../screens/Auth/Access/access";
 
 import WelcomeScreen from "../screens/Auth/welcomeScreen/welcome";
@@ -8,6 +14,18 @@ import MainView from "../screens/Home/views/main/main";
 import Market from "../screens/Home/views/market/market";
 import Transaction from "../screens/Home/views/transaction/transaction";
 import { APP_ROUTES } from "./Route";
+
+function RequireAuth({ children }: any) {
+  const token = localStorage.getItem("@token");
+  const isTokenAvailable = token != null && token != "";
+  let location = useLocation();
+
+  if (!isTokenAvailable) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  } else {
+    return children;
+  }
+}
 
 const Router = () => {
   return (
@@ -18,12 +36,54 @@ const Router = () => {
         {/* <Route path={APP_ROUTES.FACE_ID} element={<FaceId />} /> */}
         {/* <Route path={APP_ROUTES.TOUCH_ID} element={<TouchIdScreen />} /> */}
         {/* <Route path={APP_ROUTES.LOGIN} element={<Login />} /> */}
-        <Route path={APP_ROUTES.MAIN} element={<MainView />} />
-        <Route path={APP_ROUTES.MARKET} element={<Market />} />
-        <Route path={APP_ROUTES.FAVORITES} element={<Favorites />} />
-        <Route path={APP_ROUTES.FAVORITES} element={<Favorites />} />
-        <Route path={APP_ROUTES.TRANSACTION} element={<Transaction />} />
-        <Route path={APP_ROUTES.ACCESS} element={<Access />} />
+        <Route
+          path={APP_ROUTES.MAIN}
+          element={
+            <RequireAuth>
+              <MainView />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={APP_ROUTES.MARKET}
+          element={
+            <RequireAuth>
+              <Market />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={APP_ROUTES.FAVORITES}
+          element={
+            <RequireAuth>
+              <Favorites />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={APP_ROUTES.FAVORITES}
+          element={
+            <RequireAuth>
+              <Favorites />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={APP_ROUTES.TRANSACTION}
+          element={
+            <RequireAuth>
+              <Transaction />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={APP_ROUTES.ACCESS}
+          element={
+            <RequireAuth>
+              <Access />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

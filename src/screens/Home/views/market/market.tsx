@@ -81,32 +81,20 @@ const Market = () => {
 
   return (
     <>
-      {isLoading ? (
+      <div className={styles.container}>
+        <ContentComp isHas={true} />
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            height: "100vh",
+            justifyContent: "start",
+            marginLeft: "100px",
           }}
         >
-          <p style={{ fontSize: "30px" }}>Loading...</p>
+          <Title title={userList.full_name || ""} fontSize="28px" />
         </div>
-      ) : (
-        <div className={styles.container}>
-          <ContentComp isHas={true} />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-              marginLeft: "100px",
-            }}
-          >
-            <Title title={userList.full_name || ""} fontSize="28px" />
-          </div>
 
-          {/* <div
+        {/* <div
             className={styles.filterBox}
             style={{
               display: "flex",
@@ -193,50 +181,8 @@ const Market = () => {
               <Logout />
             </div>
           </div> */}
-          <div className={styles.filterBox}>
-            <div className={styles.filterLeft}>
-              <Button
-                btnSize="large"
-                btnType="outline"
-                style={{
-                  width: "200px",
-                  marginTop: "20px",
-                  fontSize: "15px",
-                  height: "50px",
-                }}
-                title="Избранное"
-                onPress={() => navigation(APP_ROUTES.FAVORITES)}
-              />
-              {/* <Input
-                style={{
-                  width: "300px",
-                  height: "60px",
-                }}
-                iconUrl={<SearchIcon />}
-                placohlder="Поиск"
-              /> */}
-              <ItemComp
-                icon={<Cash />}
-                title="Остаток денежных средств:"
-                text={`${priceList.balance?.toLocaleString("ru-RU")} сум` || ""}
-                textColor={COLORS.orange}
-                style={{ marginLeft: "30px" }}
-              />
-              <ItemComp
-                icon={<Limit />}
-                title="Остаток по лимиту:"
-                text={
-                  `${
-                    priceList.limit_summa === null
-                      ? "0"
-                      : priceList.limit_summa?.toLocaleString("ru-RU")
-                  } сум` || ""
-                }
-                textColor={COLORS.crimson}
-                style={{ marginLeft: "30px" }}
-                iconBack={COLORS.crimson}
-              />
-            </div>
+        <div className={styles.filterBox}>
+          <div className={styles.filterLeft}>
             <Button
               btnSize="large"
               btnType="outline"
@@ -246,58 +192,99 @@ const Market = () => {
                 fontSize: "15px",
                 height: "50px",
               }}
-              title="Корзина"
-              onPress={() => show("basket")}
+              title="Избранное"
+              onPress={() => navigation(APP_ROUTES.FAVORITES)}
             />
-            {/* <IconComp
+            {/* <Input
+                style={{
+                  width: "300px",
+                  height: "60px",
+                }}
+                iconUrl={<SearchIcon />}
+                placohlder="Поиск"
+              /> */}
+            <ItemComp
+              icon={<Cash />}
+              title="Остаток денежных средств:"
+              text={`${priceList.balance?.toLocaleString("ru-RU")} сум` || ""}
+              textColor={COLORS.orange}
+              style={{ marginLeft: "30px" }}
+            />
+            <ItemComp
+              icon={<Limit />}
+              title="Остаток по лимиту:"
+              text={
+                `${
+                  priceList.limit_summa === null
+                    ? "0"
+                    : priceList.limit_summa?.toLocaleString("ru-RU")
+                } сум` || ""
+              }
+              textColor={COLORS.crimson}
+              style={{ marginLeft: "30px" }}
+              iconBack={COLORS.crimson}
+            />
+          </div>
+          <Button
+            btnSize="large"
+            btnType="outline"
+            style={{
+              width: "200px",
+              marginTop: "20px",
+              fontSize: "15px",
+              height: "50px",
+            }}
+            title="Корзина"
+            onPress={() => show("basket")}
+          />
+          {/* <IconComp
               iconType="primary"
               onPress={() => show("basket")}
               icon={<CaseIcon />}
             /> */}
-          </div>
-          <div className={styles.content}>
-            <div className={styles.category}>
-              <Category />
-            </div>
-            <div className={styles.productBox}>
-              {currentPosts.map((e, index) => {
-                return (
-                  <ProductItem
-                    key={index}
-                    imgUrl={e.image}
-                    heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
-                    onHeartPress={() => {
-                      dispatch.basketSlice.addFavorite({
-                        shop_id: 1,
-                        product_id: e.id,
-                      });
-                    }}
-                    name={e.name}
-                    price={`${e.price?.toLocaleString("ru-RU")} сум`}
-                    // discount={`${e.discount} сум`}
-                    count={e.amount_in_cart}
-                    onBuyPress={() => OnBuy(e)}
-                    onBasketPress={() =>
-                      dispatch.basketSlice.add({ product_id: e.id })
-                    }
-                    // onBasketPress={() => productStore.addProducts(e)}
-                  />
-                );
-              })}
-            </div>
-          </div>
-          <div className={styles.pagination}>
-            <PaginationBox
-              postsPerPage={postsPerPage}
-              totalPosts={productList.length}
-              paginate={paginate}
-            />
-          </div>
-          <Basket />
-          <Order />
-          <ConfirmOrder />
         </div>
-      )}
+        <div className={styles.content}>
+          <div className={styles.category}>
+            <Category />
+          </div>
+          <div className={styles.productBox}>
+            {currentPosts.map((e, index) => {
+              return (
+                <ProductItem
+                  key={index}
+                  imgUrl={e.image}
+                  heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
+                  onHeartPress={() => {
+                    dispatch.basketSlice.addFavorite({
+                      shop_id: 1,
+                      product_id: e.id,
+                    });
+                  }}
+                  name={e.name}
+                  price={`${e.price?.toLocaleString("ru-RU")} сум`}
+                  // discount={`${e.discount} сум`}
+                  count={e.amount_in_cart}
+                  onBuyPress={() => OnBuy(e)}
+                  onBasketPress={() =>
+                    dispatch.basketSlice.add({ product_id: e.id })
+                  }
+                  // onBasketPress={() => productStore.addProducts(e)}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className={styles.pagination}>
+          <PaginationBox
+            postsPerPage={postsPerPage}
+            totalPosts={productList.length}
+            paginate={paginate}
+          />
+        </div>
+        <Basket />
+        <Order />
+        <ConfirmOrder />
+      </div>
     </>
   );
 };

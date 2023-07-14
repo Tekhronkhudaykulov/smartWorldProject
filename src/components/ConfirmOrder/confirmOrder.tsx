@@ -1,7 +1,7 @@
 import { Backdrop } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { COLORS } from "../../constants/colors";
 import useRootStore from "../../hook/useRootStore";
 import { APP_ROUTES } from "../../router/Route";
@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
 import { useReactToPrint } from "react-to-print";
 import "../Check/Check.css";
-import { $api } from "../../contants/API";
 
 const ConfirmOrder = () => {
   const { visiable, show, hide } = useRootStore().visiibleStore;
@@ -26,6 +25,9 @@ const ConfirmOrder = () => {
       data: { shop_id: 1 },
       callback: () => {
         handlePrint();
+        localStorage.clear();
+        dispatch.profileSlice.logout();
+        navigation(APP_ROUTES.WELCOME);
       },
     });
     // handlePrint();
