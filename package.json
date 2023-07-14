@@ -47,10 +47,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/ react-scripts build",
+    "build-electron": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron:start": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron:start": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "yarn build-electron && electron-builder build --publish never"
   },
   "eslintConfig": {
     "extends": [
@@ -73,6 +75,7 @@
   "devDependencies": {
     "concurrently": "^8.2.0",
     "electron": "^25.3.0",
+    "electron-builder": "^24.4.0",
     "wait-on": "^7.0.1"
   }
 }

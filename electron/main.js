@@ -19,7 +19,6 @@ function createWindow() {
 
     mainWindow.loadURL('http://localhost:3000');
 
-    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null
@@ -31,8 +30,8 @@ function createWindow() {
             contextIsolation: false,
         }
     });
+
     workerWindow.loadURL("file://" + __dirname + "/worker.html");
-    workerWindow.webContents.openDevTools();
 
     workerWindow.on("closed", () => {
         workerWindow = undefined;
