@@ -53,7 +53,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "rreact-app-rewired eject",
+    "eject": "react-app-rewired eject",
     "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder build --win --ia32 -c.extraMetadata.main=build/electron.js --publish never",
     "preelectron-pack": "yarn build"
