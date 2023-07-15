@@ -1,38 +1,47 @@
 const {print} = require("pdf-to-printer");
 
-const {app, ipcMain, BrowserWindow} = require('electron');
+const {ipcMain} = require('electron');
+
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+
 const os = require("os");
 const fs = require("fs");
 const path = require('path');
-const url = require('url');
+const isDev = require('electron-is-dev');
 
 let mainWindow;
 let workerWindow;
 
 function createWindow() {
+
     mainWindow = new BrowserWindow({
+        fullscreen: true,
+        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
         }
     });
 
-    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
-    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null
     })
 
     workerWindow = new BrowserWindow({
+        show: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
         }
     });
+
+
     workerWindow.loadURL("file://" + __dirname + "/worker.html");
-    workerWindow.webContents.openDevTools();
 
     workerWindow.on("closed", () => {
         workerWindow = undefined;

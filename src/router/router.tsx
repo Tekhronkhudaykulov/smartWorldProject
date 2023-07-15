@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useLocation,
-  Navigate,
+    BrowserRouter,
+    Route,
+    Routes,
+    useLocation,
+    Navigate, HashRouter,
 } from "react-router-dom";
 import Access from "../screens/Auth/Access/access";
 
@@ -29,7 +29,7 @@ function RequireAuth({ children }: any) {
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path={APP_ROUTES.WELCOME} element={<WelcomeScreen />} />
         {/* <Route path={APP_ROUTES.AUTH} element={<Authorization />} /> */}
@@ -85,7 +85,7 @@ const Router = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
