@@ -31,7 +31,6 @@ const WelcomeScreen = () => {
       window.location.reload();
     }
   }, [token]);
-
   return (
     <div className={styles.container}>
       <div className={styles.logoBox}>

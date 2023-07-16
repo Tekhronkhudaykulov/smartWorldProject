@@ -5,6 +5,7 @@ import { basketSlice } from "./basket/basketSlice";
 import { profileSlice } from "./profile/ProfileSlice";
 import { orderSlice } from "./order/orderSlice";
 import { OtherSlice } from "./other/OtherSlice";
+import { authSlice } from "./auth/authSlice";
 
 export interface RootModel extends Models<RootModel> {
   productSlice: typeof productSlice;
@@ -13,6 +14,7 @@ export interface RootModel extends Models<RootModel> {
   profileSlice: typeof profileSlice;
   orderSlice: typeof orderSlice;
   OtherSlice: typeof OtherSlice;
+  authSlice: typeof authSlice;
 }
 
 export const models: RootModel = {
@@ -22,4 +24,5 @@ export const models: RootModel = {
   profileSlice,
   orderSlice,
   OtherSlice,
+  authSlice,
 };
