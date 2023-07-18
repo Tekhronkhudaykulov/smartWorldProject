@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button/button";
 import Input from "../../../components/Input/input";
@@ -8,24 +8,39 @@ import { APP_ROUTES } from "../../../router/Route";
 import styles from "./login.module.css";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "../../../store";
+import { $api } from "../../../contants/API";
 
 const Login = () => {
   const navigation = useNavigate();
 
-  const token = localStorage.getItem("@token");
-
   useEffect(() => {
-    if (token) {
-      navigation(APP_ROUTES.MARKET);
-      // window.location.reload(true);
-      window.location.reload();
-    }
-  }, [token]);
+    dispatch.OtherSlice.getSliderNotToken();
+
+    const listener = () => {
+      const token = localStorage.getItem("@token");
+      if (token) {
+        navigation(APP_ROUTES.MAIN);
+      }
+    };
+
+    window.addEventListener("storage", listener);
+
+    return () => window.removeEventListener("storage", listener);
+  }, []);
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState();
 
   const dispatch = useDispatch<Dispatch>();
+
+  const dataSend = async (payload: any) => {
+    try {
+      const data = await $api.post("v1/user/login", payload);
+      navigation(APP_ROUTES.FACE_ID);
+    } catch {
+      console.log("errpr");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -54,7 +69,9 @@ const Login = () => {
           style={{
             marginTop: "30px",
           }}
-          onPress={() => navigation(APP_ROUTES.FACE_ID)}
+          onPress={() => {
+            dataSend({ username, password });
+          }}
         />
       </div>
     </div>
