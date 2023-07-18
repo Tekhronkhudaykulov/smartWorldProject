@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     socket.current = new WebSocket(
-      "wss://spil-socket.four-seasons.uz?token=7NJuSfpecAOJRoJyIbelHyaXHivmKvUI"
+      "wss://spil-socket.four-seasons.uz?token=3ZaRPOqVebdMtu_MG1vITN1n66Gb2e9O"
     );
     socket.current.onmessage = (e: any) => {
       let data = e;
