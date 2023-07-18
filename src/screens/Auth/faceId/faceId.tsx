@@ -13,10 +13,10 @@ const FaceId = () => {
   return (
     <div className={styles.container}>
       <LogoName />
-      <Title title="Авторизация" />
-      <FaceIdComp />
+      {/* <Title title="Регистрация" /> */}
+      {/* <FaceIdComp /> */}
       {/* <Slider onPress={() => navigation(APP_ROUTES.TOUCH_ID)} /> */}
-      <Title fontSize="35px" title="Смотрите прямо" />
+      <Title fontSize="35px" title="Смотрите в камеру" />
     </div>
   );
 };

@@ -4,7 +4,7 @@ export enum APP_ROUTES {
 
   FACE_ID = "/auth/face-id",
   TOUCH_ID = "/auth/touch-id",
-  LOGIN = "/",
+  LOGIN = "/login",
 
   MAIN = "/main",
   MARKET = "/market",

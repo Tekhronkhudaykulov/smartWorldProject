@@ -13,7 +13,6 @@ function App() {
     socket.current.onmessage = (e: any) => {
       let data = e;
       localStorage.setItem("@token", JSON.parse(data.data).data.auth_key);
-      console.log({ data });
     };
   }, []);
 

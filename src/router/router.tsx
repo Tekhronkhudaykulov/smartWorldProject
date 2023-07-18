@@ -35,7 +35,7 @@ const Router = () => {
   return (
     <HashRouter>
       <Routes>
-        {/* <Route path={APP_ROUTES.LOGIN} element={<Login />} /> */}
+        <Route path={APP_ROUTES.LOGIN} element={<Login />} />
         <Route path={APP_ROUTES.WELCOME} element={<WelcomeScreen />} />
         {/* <Route path={APP_ROUTES.AUTH} element={<Authorization />} /> */}
         <Route path={APP_ROUTES.FACE_ID} element={<FaceId />} />

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Banner from "../../../components/Banner/banner";
+
 import Button from "../../../components/Button/button";
 import LogoName from "../../../components/LogoName/logoName";
 import Slider from "../../../components/Slider/slider";
@@ -37,7 +38,15 @@ const WelcomeScreen = () => {
         <LogoName fontSize="170px" />
       </div>
       <div className={styles.bannerBox}>
-        <Slider />
+        <Button
+          btnSize="large"
+          btnType="primary"
+          title="Регистрация"
+          style={{
+            marginTop: "30px",
+          }}
+          onPress={() => navigation(APP_ROUTES.LOGIN)}
+        />
 
         <div className={styles.containerSlider}>
           <Carousel

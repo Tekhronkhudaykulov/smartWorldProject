@@ -31,7 +31,7 @@ const Login = () => {
     <div className={styles.container}>
       <div className={styles.topBox}>
         <LogoName />
-        <Title title="Авторизация" />
+        <Title title="Регистрация" />
       </div>
       <div className={styles.bottomBox}>
         <Input
@@ -50,7 +50,7 @@ const Login = () => {
         <Button
           btnSize="large"
           btnType="primary"
-          title="Войти"
+          title="Регистрация"
           style={{
             marginTop: "30px",
           }}
