@@ -8,7 +8,7 @@ import {APP_ROUTES} from "../../router/Route";
 import Title from "../Title/title";
 import styles from "./confirmOrder.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {Dispatch, RootState} from "../../store";
+import {Dispatch, RootState, store} from "../../store";
 import "../Check/Check.css";
 import Check from "../Check/Check";
 import {renderToStaticMarkup, renderToString} from "react-dom/server";
@@ -32,10 +32,6 @@ const ConfirmOrder = () => {
         hide("confirmOrder");
     };
 
-    const {userList} = useSelector((state: RootState) => state.profileSlice);
-
-    const {getOrderList} = useSelector((state: RootState) => state.orderSlice);
-
     const handlePrint = async () => {
         const ipcRenderer = window.require("electron").ipcRenderer;
 
@@ -43,7 +39,13 @@ const ConfirmOrder = () => {
             ipcRenderer.send("printPDF", content);
         }
 
-        console.log({userList,getOrderList})
+        const state = store.getState()
+
+        const getOrderList = state.orderSlice?.getOrderList;
+
+        const userList = state.profileSlice?.userList;
+
+        console.log({})
 
         const a = renderToStaticMarkup(
             <table id={"check"} className="check-box">
