@@ -18,6 +18,9 @@ export type AllOrder = {
 };
 
 export type getOrderListType = {
+  id: number;
+  created_at: string;
+  created_time: string;
   orderItems: [
     {
       count: number;
@@ -29,7 +32,12 @@ export type getOrderListType = {
       };
     }
   ];
-  created_at: string;
+  user: {
+    balance: number;
+    full_name: string;
+    limit_summa: number;
+    id: number;
+  };
   price: number;
   total_price: number;
 };

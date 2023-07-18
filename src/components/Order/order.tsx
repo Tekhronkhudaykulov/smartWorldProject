@@ -27,6 +27,7 @@ const Order = () => {
   };
 
   const { priceList } = useSelector((state: RootState) => state.basketSlice);
+  console.log({ priceList });
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
 
@@ -94,14 +95,14 @@ const Order = () => {
             <ItemComp
               icon={<Cash />}
               title="Остаток денежных средств:"
-              text={`${userList.balance?.toLocaleString("ru-RU")} сум` || ""}
+              text={`${priceList.balance?.toLocaleString("ru-RU")} сум` || ""}
               textColor={COLORS.orange}
             />
             <ItemComp
               icon={<Cash />}
               title="Остаток по лимиту:"
               text={
-                `${userList.limit_summa?.toLocaleString("ru-RU")} сум` || ""
+                `${priceList.limit_summa?.toLocaleString("ru-RU")} сум` || ""
               }
               textColor={COLORS.orange}
             />

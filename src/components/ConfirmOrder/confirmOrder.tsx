@@ -24,10 +24,10 @@ const ConfirmOrder = () => {
     dispatch.orderSlice.orderSend({
       data: { shop_id: 1 },
       callback: () => {
-        handlePrint();
-        localStorage.clear();
-        dispatch.profileSlice.logout();
-        navigation(APP_ROUTES.WELCOME);
+        // handlePrint();
+        // localStorage.clear();
+        // dispatch.profileSlice.logout();
+        // navigation(APP_ROUTES.WELCOME);
       },
     });
     // handlePrint();
@@ -39,7 +39,7 @@ const ConfirmOrder = () => {
 
   const handlePrint = () => {
     // @ts-ignore
-      const ipcRenderer = window.require("electron").ipcRenderer;
+    const ipcRenderer = window.require("electron").ipcRenderer;
 
     // cannot send message to other windows directly https://github.com/electron/electron/issues/991
     function sendCommandToWorker(content: any) {
@@ -91,20 +91,17 @@ const ConfirmOrder = () => {
           <div className="box-top">
             <div>
               <div>Номер заказа</div>
-              <div id="id">#</div>
+              <div id="id">{getOrderList.id}</div>
             </div>
             <div>
               <div>дата время</div>
               <div id="id">{getOrderList.created_at}</div>
-            </div>
-            <div>
-              <div></div>
-              <div id="id">13:00:08</div>
+              <div id="id">{getOrderList.created_time}</div>
             </div>
           </div>
-          <div className="username">{userList.username}</div>
+          <div className="username">{getOrderList.user?.full_name}</div>
           <div className="table-id">
-            ID <strong>{userList.id}</strong>
+            ID <strong>{getOrderList.user?.id}</strong>
           </div>
           <table>
             <thead>
@@ -133,27 +130,35 @@ const ConfirmOrder = () => {
             </tbody>
           </table>
           <div className="total">
-            <div className="check-total">ИТОГО по чеку</div>
-            <div className="check-amount">12</div>
+            <div className="check-total">ИТОГО </div>
+            {/* <div className="check-amount">12</div> */}
             <div className="check-price">
               {getOrderList.price?.toLocaleString("ru-RU")}
             </div>
           </div>
-          <div className="block">
+          {/* <div className="block">
             Лимит
             <div className="block-right">
               {userList.limit_summa?.toLocaleString("ru-RU")}
             </div>
-          </div>
-          <div className="block">
-            Выбрано товаров на сумму
+          </div> */}
+          {/* <div className="block">
+            Итого
             <div className="block-right">
               {getOrderList.price?.toLocaleString("ru-RU")}
+            </div>
+          </div> */}
+          <div className="block">
+            Остаток денежные средств
+            <div className="block-right">
+              {userList.balance?.toLocaleString("ru-RU")}
             </div>
           </div>
           <div className="block">
             Остаток лимита
-            <div className="block-right">90 000</div>
+            <div className="block-right">
+              {userList.limit_summa?.toLocaleString("ru-RU")}
+            </div>
           </div>
         </table>
       </div>
