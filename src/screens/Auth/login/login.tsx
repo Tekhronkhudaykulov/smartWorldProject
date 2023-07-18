@@ -10,28 +10,12 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "../../../store";
 import { $api } from "../../../contants/API";
 
+
 const Login = () => {
   const navigation = useNavigate();
 
-  useEffect(() => {
-    dispatch.OtherSlice.getSliderNotToken();
-
-    const listener = () => {
-      const token = localStorage.getItem("@token");
-      if (token) {
-        navigation(APP_ROUTES.MAIN);
-      }
-    };
-
-    window.addEventListener("storage", listener);
-
-    return () => window.removeEventListener("storage", listener);
-  }, []);
-
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState();
-
-  const dispatch = useDispatch<Dispatch>();
 
   const dataSend = async (payload: any) => {
     try {
