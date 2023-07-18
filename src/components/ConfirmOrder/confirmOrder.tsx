@@ -11,7 +11,6 @@ import {useDispatch} from "react-redux";
 import {Dispatch} from "../../store";
 import "../Check/Check.css";
 import Check from "../Check/Check";
-import {renderToStaticMarkup, renderToString} from "react-dom/server";
 
 const ConfirmOrder = () => {
     const {visiable, hide} = useRootStore().visiibleStore;

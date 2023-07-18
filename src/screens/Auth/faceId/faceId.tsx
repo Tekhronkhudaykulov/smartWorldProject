@@ -8,6 +8,7 @@ import { APP_ROUTES } from "../../../router/Route";
 import styles from "./faceId.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import {$api} from "../../../contants/API";
 
 const FaceId = () => {
   const navigation = useNavigate();
@@ -31,9 +32,10 @@ const FaceId = () => {
     socket.current = new WebSocket(
       "wss://spil-socket.four-seasons.uz?token=3ZaRPOqVebdMtu_MG1vITN1n66Gb2e9O"
     );
-    socket.current.onmessage = (e: any) => {
-      let data = e;
-      localStorage.setItem("@token", JSON.parse(data.data).data.auth_key);
+    socket.current.onmessage = (data: any) => {
+      const token = JSON.parse(data.data).data.auth_key
+      localStorage.setItem("@token", token);
+      $api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       dispatchEvent(new Event("storage"));
     };
   }, []);
