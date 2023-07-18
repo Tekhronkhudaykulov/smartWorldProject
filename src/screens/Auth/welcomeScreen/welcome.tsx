@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button/button";
@@ -18,22 +18,33 @@ const WelcomeScreen = () => {
     dispatch.OtherSlice.getSliderNotToken();
 
     const listener = () => {
-        const token = localStorage.getItem("@token");
-        if (token) {
-            navigation(APP_ROUTES.MAIN);
-        }
-    }
+      const token = localStorage.getItem("@token");
+      if (token) {
+        navigation(APP_ROUTES.MAIN);
+      }
+    };
 
-   window.addEventListener('storage', listener)
+    window.addEventListener("storage", listener);
 
-  return () => window.removeEventListener('storage', listener)
-
+    return () => window.removeEventListener("storage", listener);
   }, []);
 
   const { sliderListNotToken } = useSelector(
     (state: RootState) => state.OtherSlice
   );
 
+  const socket = useRef<any>();
+
+  useEffect(() => {
+    socket.current = new WebSocket(
+      "wss://spil-socket.four-seasons.uz?token=3ZaRPOqVebdMtu_MG1vITN1n66Gb2e9O"
+    );
+    socket.current.onmessage = (e: any) => {
+      let data = e;
+      localStorage.setItem("@token", JSON.parse(data.data).data.auth_key);
+      dispatchEvent(new Event("storage"));
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
