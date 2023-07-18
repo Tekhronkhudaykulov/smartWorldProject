@@ -60,6 +60,7 @@
   },
   "build": {
     "appId": "com.example.electron-cra",
+    "npmRebuild": false,
     "files": [
       "build/**/*",
       "node_modules/**/*"
