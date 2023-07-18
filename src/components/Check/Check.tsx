@@ -8,8 +8,7 @@ const Check = () => {
   const { getOrderList } = useSelector((state: RootState) => state.orderSlice);
 
   return (
-    <div>
-      <table className="check-box">
+      <table id={"check"} className="check-box">
         <div className="box-top">
           <div>
             <div>Номер заказа</div>
@@ -83,7 +82,6 @@ const Check = () => {
           </div>
         </div>
       </table>
-    </div>
   );
 };
 

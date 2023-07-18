@@ -24,6 +24,8 @@ function createWindow() {
     },
   });
 
+  mainWindow.webContents.openDevTools();
+
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -52,6 +54,7 @@ ipcMain.on("printPDF", (even, content) => {
   console.log(content);
   workerWindow.webContents.send("printPDF", content);
 });
+
 // when worker window is ready
 ipcMain.on("readyToPrintPDF", (event) => {
   const pdfPath = path.join(os.tmpdir(), "print.pdf");

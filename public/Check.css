@@ -2,7 +2,6 @@
   padding: 1rem;
   width: 20%;
 }
-
 .box-top {
   display: flex;
   justify-content: space-between;
@@ -17,7 +16,7 @@
 }
 #id {
   font-size: 14px;
-
+ 
 }
 .username {
   font-size: 18px;
