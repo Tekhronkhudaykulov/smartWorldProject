@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+
 }
 .bottomBox {
     height: 40%;
@@ -15,4 +16,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: -35px;
 }

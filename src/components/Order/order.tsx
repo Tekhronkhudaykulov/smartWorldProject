@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import IconComp from "../IconComp/iconComp";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { APP_ROUTES } from "../../router/Route";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Order = () => {
   const { visiable, show, hide } = useRootStore().visiibleStore;
@@ -35,10 +37,17 @@ const Order = () => {
 
   const dispatch = useDispatch<Dispatch>();
 
+  const success = () => {
+    toast.success("Спасибо за покупку!", {
+      autoClose: 2000,
+    });
+  };
+
   const logout = () => {
     localStorage.clear();
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
+    success();
   };
 
   return (

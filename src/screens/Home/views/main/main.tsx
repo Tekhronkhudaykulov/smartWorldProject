@@ -24,6 +24,8 @@ import styles from "./main.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import Check from "../../../../components/Check/Check";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainView = () => {
   const navigation = useNavigate();
@@ -42,10 +44,18 @@ const MainView = () => {
   const isLoading = useSelector(
     (state: RootState) => state.loading.models.profileSlice
   );
+
+  const success = () => {
+    toast.success("Спасибо за покупку!", {
+      autoClose: 2000,
+    });
+  };
+
   const logout = () => {
     localStorage.clear();
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
+    success();
   };
 
   return (

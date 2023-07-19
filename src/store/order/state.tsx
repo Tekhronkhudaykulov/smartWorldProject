@@ -4,4 +4,5 @@ export const initialState: InitialState = {
   ordersList: [],
   getAllOrders: {},
   getOrderList: {},
+  toast: false,
 };

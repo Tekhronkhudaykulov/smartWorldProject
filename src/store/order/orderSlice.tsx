@@ -25,6 +25,12 @@ export const orderSlice = createModel<RootModel>()({
         getOrderList: payload,
       };
     },
+    isResultFunction: (state, payload) => {
+      return {
+        ...state,
+        toast: payload,
+      };
+    },
   },
 
   effects: (dispatch) => ({
@@ -32,8 +38,8 @@ export const orderSlice = createModel<RootModel>()({
       try {
         const { data } = await $api.post("v1/order/send", payload.data);
         await dispatch.orderSlice.getOrderListFunction(data.data);
-        alert("Спасибо за покупку !");
         await payload.callback?.();
+        await dispatch.orderSlice.isResultFunction(true);
       } catch (e) {
         alert("У пользователя недостаточно лимита");
       }
@@ -41,7 +47,6 @@ export const orderSlice = createModel<RootModel>()({
     async getOrderLoad() {
       try {
         const { data } = await $api.get("v1/user-transaction/index");
-
         dispatch.orderSlice.getOrders(data.data.data);
         dispatch.orderSlice.getAllOrdersFuntion(data.data);
       } catch (e) {}

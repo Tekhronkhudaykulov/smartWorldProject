@@ -17,6 +17,9 @@ import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../../router/Route";
 import Basket from "../../../../components/Basket/basket";
 import ConfirmOrder from "../../../../components/ConfirmOrder/confirmOrder";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Favorites = () => {
   const products = useRootStore().productStore;
 
@@ -43,9 +46,16 @@ const Favorites = () => {
     dispatch.basketSlice.addFavorite({ product_id: item.id, shop_id: 1 });
   };
 
+  const success = () => {
+    toast.success("Спасибо за покупку!", {
+      autoClose: 2000,
+    });
+  };
+
   const logout = () => {
     localStorage.clear();
     navigation(APP_ROUTES.WELCOME);
+    success();
   };
   return (
     <div className={styles.container}>

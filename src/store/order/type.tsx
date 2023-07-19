@@ -45,4 +45,5 @@ export type InitialState = {
   ordersList: GetOrders[];
   getAllOrders: Partial<AllOrder>;
   getOrderList: Partial<getOrderListType>;
+  toast: boolean;
 };
