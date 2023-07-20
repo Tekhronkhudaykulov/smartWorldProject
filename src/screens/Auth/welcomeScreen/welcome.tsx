@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Button from "../../../components/Button/button";
 import LogoName from "../../../components/LogoName/logoName";
 import { APP_ROUTES } from "../../../router/Route";
 import styles from "./welcome.module.css";
 import Carousel from "nuka-carousel/lib/carousel";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../../store";
 import { baseUrl } from "../../../contants/API";
 import { useFaceIdLogin } from "../../../hook/useFaceIdLogin";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,10 @@ import "react-toastify/dist/ReactToastify.css";
 const WelcomeScreen = () => {
   const navigation = useNavigate();
 
-  useFaceIdLogin();
+  const dispatch = useDispatch<Dispatch>();
+  useEffect(() => {
+    dispatch.OtherSlice.getSliderNotToken();
+  }, []);
 
   const { sliderListNotToken } = useSelector(
     (state: RootState) => state.OtherSlice
@@ -26,13 +29,10 @@ const WelcomeScreen = () => {
 
   return (
     <>
-      {toast == true ? (
-        <div>
-          <ToastContainer position="top-center" />
-        </div>
-      ) : (
-        ""
-      )}
+      <div>
+        <ToastContainer position="top-center" />
+      </div>
+
       <div className={styles.container}>
         <div className={styles.logoBox}>
           <LogoName fontSize="170px" />
@@ -40,11 +40,17 @@ const WelcomeScreen = () => {
         <div className={styles.bannerBox}>
           <Button
             btnSize="large"
+            btnType="outline"
+            title="Вход"
+            style={{
+              marginTop: "-50px",
+            }}
+            onPress={() => navigation(APP_ROUTES.FACE_ID)}
+          />
+          <Button
+            btnSize="large"
             btnType="primary"
             title="Регистрация"
-            style={{
-              marginTop: "30px",
-            }}
             onPress={() => navigation(APP_ROUTES.LOGIN)}
           />
 

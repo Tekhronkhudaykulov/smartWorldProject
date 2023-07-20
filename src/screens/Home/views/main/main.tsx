@@ -58,6 +58,8 @@ const MainView = () => {
     success();
   };
 
+  let date = new Date();
+
   return (
     <>
       {isLoading ? (
@@ -76,7 +78,8 @@ const MainView = () => {
           <div className={styles.header}>
             <div>
               <Title title={userList.full_name || ""} fontSize="28px" />
-              <GreyText text="Понедельник, 2 февраля 2023" />
+
+              <GreyText text={date.toString()} style={{ marginTop: "10px" }} />
             </div>
             <IconComp
               iconType="primary"

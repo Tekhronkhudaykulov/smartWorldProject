@@ -6,6 +6,7 @@ import { userList } from "./type";
 
 export const profileSlice = createModel<RootModel>()({
   state: initialState,
+
   reducers: {
     setUser: (state, payload: userList) => {
       return {
@@ -23,6 +24,8 @@ export const profileSlice = createModel<RootModel>()({
   effects: (dispatch) => ({
     async getUser() {
       try {
+        const token = localStorage.getItem("@token");
+        $api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const { data } = await $api.get("v1/user/info");
         dispatch.profileSlice.setUser(data);
       } catch (e) {}
