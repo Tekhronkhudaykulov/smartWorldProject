@@ -39,8 +39,7 @@ function createWindow() {
   });
 
   workerWindow = new BrowserWindow({
-    show: false,
-    width: 300,
+    show: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
