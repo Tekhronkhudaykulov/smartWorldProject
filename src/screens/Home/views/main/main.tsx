@@ -120,7 +120,6 @@ const MainView = () => {
               text="Магазин"
               onPress={() => navigation(APP_ROUTES.MARKET)}
             />
-
             <Card icon={<Mobile />} text="Аудиозвонки" />
 
             <Card icon={<VideoCall />} text="Видеозвонки" />
