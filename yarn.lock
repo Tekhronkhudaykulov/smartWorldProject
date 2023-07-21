@@ -9847,6 +9847,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-simple-keyboard@^3.6.43:
+  version "3.6.43"
+  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.6.43.tgz#07cace54907e52ac9e27d7bf8609febba8aff951"
+  integrity sha512-MEcwwSx8DBzu/VYYSn8CjSuTTzMqW9jdTSk8/sQJUnoJJew9qjYRsUjd4T4KWEQqeo9w3AlyeVD4hA/l98nb5Q==
+
 react-svg@^16.1.7:
   version "16.1.18"
   resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-16.1.18.tgz#f157acb43e810fabed18fd0609fac7656ebca880"

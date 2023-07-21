@@ -8,6 +8,7 @@ interface Props {
   style?: CSSProperties;
   type?: any;
   onchangeInput?: (e: any) => void;
+  valueInput?: any;
 }
 
 const Input: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<Props> = ({
   iconUrl,
   style,
   type = "text",
+  valueInput,
   onchangeInput,
 }) => {
   return (
@@ -28,6 +30,7 @@ const Input: React.FC<Props> = ({
           type={type}
           placeholder={placohlder}
           onChange={onchangeInput}
+          value={valueInput}
         />
       </div>
     </div>

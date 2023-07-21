@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button/button";
 import Input from "../../../components/Input/input";
@@ -11,12 +11,15 @@ import { Dispatch, RootState } from "../../../store";
 import { $api } from "../../../contants/API";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
+import KeyboardWrapper from "../../../components/Keyboard/Keyboard";
 
 const Login = () => {
   const navigation = useNavigate();
 
   const [username, setUserName] = useState("");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const error = () => {
@@ -35,6 +38,16 @@ const Login = () => {
     setLoading(false);
   };
 
+  const keyboard = useRef<any>(null);
+
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    const input = event.target.value;
+    setUserName(input);
+    setPassword(input);
+    keyboard.current.setUserName(input);
+    keyboard.current.setPassword(input);
+  };
+
   return (
     <>
       <ToastContainer position="top-center" />
@@ -47,16 +60,20 @@ const Login = () => {
           <Input
             label="Логин"
             placohlder="Логин"
-            onchangeInput={(e) => setUserName(e.target.value)}
+            onchangeInput={(e) => onChangeInput(e)}
+            valueInput={username}
             // iconUrl={<SearchIcon />}
           />
           <Input
             label="Пароль"
             placohlder="Пароль"
             type="text"
-            onchangeInput={(e) => setPassword(e.target.value)}
+            onchangeInput={(e) => onChangeInput(e)}
+            valueInput={password}
+
             // iconUrl={<SearchIcon />}
           />
+
           <Button
             btnSize="large"
             btnType="primary"
@@ -78,6 +95,7 @@ const Login = () => {
             onPress={() => navigation(APP_ROUTES.WELCOME)}
           />
         </div>
+        <KeyboardWrapper keyboardRef={keyboard} onChange={setUserName} />
       </div>
     </>
   );
