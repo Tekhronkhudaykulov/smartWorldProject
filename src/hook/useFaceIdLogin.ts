@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
-
 import { useDispatch } from "react-redux";
 import { Dispatch } from "../store";
 import { $api } from "../contants/API";
 import { APP_ROUTES } from "../router/Route";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useIdleTimer } from "react-idle-timer";
 
 export const useFaceIdLogin = () => {
   const navigation = useNavigate();
@@ -28,4 +30,27 @@ export const useFaceIdLogin = () => {
       }
     };
   }, []);
+};
+
+export const LogoutProject = () => {
+  const dispatch = useDispatch();
+
+  const navigation = useNavigate();
+
+  const success = () => {
+    toast.success("Спасибо за покупку!", {
+      autoClose: 2000,
+    });
+  };
+  const handleOnUserIdle = () => {
+    localStorage.clear();
+    dispatch.profileSlice.logout();
+    navigation(APP_ROUTES.WELCOME);
+    success();
+  };
+  useIdleTimer({
+    timeout: 5000,
+    onIdle: handleOnUserIdle,
+    debounce: 500,
+  });
 };

@@ -28,9 +28,9 @@ const WelcomeScreen = () => {
 
   return (
     <>
-      {toast && <ToastContainer position="top-center" />}
+      {toast && <ToastContainer position="top-right" />}
       <div>
-        <ToastContainer position="top-center" />
+        <ToastContainer position="top-right" />
       </div>
       <div className={styles.container}>
         <div className={styles.logoBox}>

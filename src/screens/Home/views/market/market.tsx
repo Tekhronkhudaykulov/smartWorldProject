@@ -1,11 +1,7 @@
-import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ProductItemData,
-  ProductItemType,
-} from "../../../../AllDatas/productItemData";
+
 import {
   CaseIcon,
   Cash,
@@ -37,9 +33,7 @@ import { Dispatch, RootState } from "../../../../store";
 import Modal from "../../../../components/Modal/modal";
 import Title from "../../../../components/Title/title";
 import PaginationBox from "../../../../components/Pagination/pagination";
-import { toast, ToastContainer } from "react-toastify";
-import { LogoutSystem } from "../../../../components/Logout/LogoutSystem";
-import { useSessionTimeout } from "../../../../hook/useSessionTimeout";
+import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -82,6 +76,7 @@ const Market = () => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
+  LogoutProject();
   return (
     <>
       <div className={styles.container}>
