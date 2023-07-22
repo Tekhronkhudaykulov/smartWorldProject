@@ -29,6 +29,7 @@ const WelcomeScreen = () => {
 
   return (
     <>
+      {toast && <ToastContainer position="top-center" />}
       <div>
         <ToastContainer position="top-center" />
       </div>

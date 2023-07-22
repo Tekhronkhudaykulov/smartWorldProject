@@ -39,6 +39,7 @@ export const orderSlice = createModel<RootModel>()({
         const { data } = await $api.post("v1/order/send", payload.data);
         await dispatch.orderSlice.getOrderListFunction(data.data);
         await payload.callback?.();
+        await dispatch.orderSlice.isResultFunction(true);
       } catch (e) {
         alert("У пользователя недостаточно лимита");
       }

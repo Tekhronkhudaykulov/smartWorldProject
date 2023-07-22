@@ -11,17 +11,18 @@ import { Dispatch, RootState } from "../../../store";
 import { $api } from "../../../contants/API";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import KeyboardWrapper from "../../../components/Keyboard/Keyboard";
+import SecondKeyboard from "../../../components/Keyboard/SecondKeyboard";
 
 const Login = () => {
   const navigation = useNavigate();
-
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [hide, setHide] = useState(false);
+  const [secondHide, setSecondHid] = useState(false);
 
   const error = () => {
     toast.error("Ошибка авторизации", {
@@ -41,15 +42,21 @@ const Login = () => {
 
   const keyboard = useRef<any>(null);
 
+  const keyboardValue = useRef<any>(null);
+
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value;
-
     setUserName(input);
     setPassword(input);
     keyboard.current.setUserName(input);
-    keyboard.current.setPassword(input);
+    keyboardValue.current.setPassword(input);
   };
 
+  const secondOnchangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
+    const input = event.target.value;
+    setPassword(input);
+    keyboardValue.current.setPassword(input);
+  };
   return (
     <>
       <ToastContainer position="top-center" />
@@ -73,10 +80,11 @@ const Login = () => {
             label="Пароль"
             placohlder="Пароль"
             type="text"
-            onchangeInput={(e) => onChangeInput(e)}
+            onchangeInput={(e) => secondOnchangeInput(e)}
             valueInput={password}
             onFocus={() => {
-              setHide(true);
+              setHide(false);
+              setSecondHid(true);
             }}
             // iconUrl={<SearchIcon />}
           />
@@ -104,6 +112,9 @@ const Login = () => {
         </div>
         {hide && (
           <KeyboardWrapper keyboardRef={keyboard} onChange={setUserName} />
+        )}
+        {secondHide && (
+          <SecondKeyboard keyboardRef={keyboardValue} onChange={setPassword} />
         )}
       </div>
     </>

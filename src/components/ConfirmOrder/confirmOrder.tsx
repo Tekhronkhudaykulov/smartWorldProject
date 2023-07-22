@@ -34,7 +34,6 @@ const ConfirmOrder = () => {
         // localStorage.clear();
         // dispatch.profileSlice.logout();
         // navigation(APP_ROUTES.WELCOME);
-        success();
       },
     });
     hide("order");
