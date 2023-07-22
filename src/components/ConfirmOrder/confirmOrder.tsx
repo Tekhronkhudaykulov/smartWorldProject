@@ -31,9 +31,9 @@ const ConfirmOrder = () => {
       data: { shop_id: 1 },
       callback: () => {
         handlePrint();
-        localStorage.clear();
-        dispatch.profileSlice.logout();
-        navigation(APP_ROUTES.WELCOME);
+        // localStorage.clear();
+        // dispatch.profileSlice.logout();
+        // navigation(APP_ROUTES.WELCOME);
         success();
       },
     });
@@ -55,7 +55,7 @@ const ConfirmOrder = () => {
     const userList = state.profileSlice?.userList;
 
     const a = renderToStaticMarkup(
-      <table id={"check"} className="check-box">
+      <div className="check-box">
         <div className="box-top">
           <div>
             <div>Номер заказа</div>
@@ -128,7 +128,7 @@ const ConfirmOrder = () => {
             {userList.limit_summa?.toLocaleString("ru-RU")}
           </div>
         </div>
-      </table>
+      </div>
     );
 
     sendCommandToWorker(a);

@@ -9,6 +9,7 @@ interface Props {
   type?: any;
   onchangeInput?: (e: any) => void;
   valueInput?: any;
+  onFocus?: (e: any) => void;
 }
 
 const Input: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Input: React.FC<Props> = ({
   type = "text",
   valueInput,
   onchangeInput,
+  onFocus,
 }) => {
   return (
     <div className={styles.container}>
@@ -30,6 +32,7 @@ const Input: React.FC<Props> = ({
           type={type}
           placeholder={placohlder}
           onChange={onchangeInput}
+          onFocus={onFocus}
           value={valueInput}
         />
       </div>

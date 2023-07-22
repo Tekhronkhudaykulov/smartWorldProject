@@ -1,6 +1,6 @@
 .check-box {
   padding: 1rem;
-  width: 20%;
+  width: 300px;
 }
 .box-top {
   display: flex;
@@ -16,7 +16,7 @@
 }
 #id {
   font-size: 14px;
- 
+
 }
 .username {
   font-size: 18px;

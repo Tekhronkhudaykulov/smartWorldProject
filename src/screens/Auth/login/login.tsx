@@ -21,6 +21,7 @@ const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hide, setHide] = useState(false);
 
   const error = () => {
     toast.error("Ошибка авторизации", {
@@ -42,6 +43,7 @@ const Login = () => {
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value;
+
     setUserName(input);
     setPassword(input);
     keyboard.current.setUserName(input);
@@ -62,6 +64,9 @@ const Login = () => {
             placohlder="Логин"
             onchangeInput={(e) => onChangeInput(e)}
             valueInput={username}
+            onFocus={() => {
+              setHide(true);
+            }}
             // iconUrl={<SearchIcon />}
           />
           <Input
@@ -70,7 +75,9 @@ const Login = () => {
             type="text"
             onchangeInput={(e) => onChangeInput(e)}
             valueInput={password}
-
+            onFocus={() => {
+              setHide(true);
+            }}
             // iconUrl={<SearchIcon />}
           />
 
@@ -95,7 +102,9 @@ const Login = () => {
             onPress={() => navigation(APP_ROUTES.WELCOME)}
           />
         </div>
-        <KeyboardWrapper keyboardRef={keyboard} onChange={setUserName} />
+        {hide && (
+          <KeyboardWrapper keyboardRef={keyboard} onChange={setUserName} />
+        )}
       </div>
     </>
   );
