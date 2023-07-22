@@ -29,24 +29,31 @@ export const basketSlice = createModel<RootModel>()({
   effects: (dispatch) => ({
     async addFavorite(payload, state) {
       try {
-        const { data } = await $api.post(
-          "v1/product/set-favorite?shop_id=1",
-          payload
-        );
-        const newProd = data.data;
-        const products = state.productSlice.productList.map((item) => {
-          if (item.id == newProd.id) {
-            return newProd;
-          }
-          return item;
-        });
-        dispatch.productSlice.setProduct(products);
+        await $api
+          .post("v1/product/set-favorite?shop_id=1", payload)
+          .then(() => {
+            dispatch.productSlice.setProduct(
+              [...state.productSlice.productList].map((item) =>
+                item.id === payload.product_id
+                  ? { ...item, isFavorite: !item.isFavorite }
+                  : { ...item }
+              )
+            );
+          });
+
+        // const newProd = data.data;
+        // const products = state.productSlice.productList.map((item) => {
+        //   if (item.id == newProd.id) {
+        //     return newProd;
+        //   }
+        //   return item;
+        // });
+        // dispatch.productSlice.setProduct(products);
         await payload.callback?.();
         // dispatch.productSlice.getProduct("");
         await dispatch.basketSlice.getFavourite();
       } catch (e) {}
     },
-
     async getFavourite() {
       try {
         const { data } = await $api.get("v1/product/favorites?shop_id=1");

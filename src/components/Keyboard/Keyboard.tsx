@@ -12,11 +12,11 @@ const KeyboardWrapper: FunctionComponent<IProps> = ({
   onChange,
   keyboardRef,
 }) => {
-  const [layoutName, setLayoutName] = useState("default");
+  const [layoutName, setLayoutName] = useState("shift");
 
   const onKeyPress = (button: string) => {
     if (button === "{shift}" || button === "{lock}") {
-      setLayoutName(layoutName === "default" ? "shift" : "default");
+      setLayoutName(layoutName === "shift" ? "shift" : "default");
     }
   };
 

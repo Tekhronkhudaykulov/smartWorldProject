@@ -150,14 +150,14 @@ const Basket = () => {
                 color={COLORS.orange}
               />
             </div>
-            <Button
+            {/* <Button
               btnSize="large"
               btnType="primary"
               title="Перейти к оформлению"
               disabled={cardList.length === 0 ? true : false}
               onPress={() => Submit()}
               style={{ opacity: 0, width: "100%" }}
-            />
+            /> */}
             <Button
               btnSize="large"
               btnType="primary"

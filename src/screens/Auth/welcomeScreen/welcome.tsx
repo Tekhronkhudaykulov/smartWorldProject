@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../../components/Button/button";
 import LogoName from "../../../components/LogoName/logoName";
 import { APP_ROUTES } from "../../../router/Route";
@@ -32,7 +32,6 @@ const WelcomeScreen = () => {
       <div>
         <ToastContainer position="top-center" />
       </div>
-
       <div className={styles.container}>
         <div className={styles.logoBox}>
           <LogoName fontSize="170px" />

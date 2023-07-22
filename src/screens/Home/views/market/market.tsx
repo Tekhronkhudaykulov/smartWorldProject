@@ -39,6 +39,7 @@ import Title from "../../../../components/Title/title";
 import PaginationBox from "../../../../components/Pagination/pagination";
 import { toast, ToastContainer } from "react-toastify";
 import { LogoutSystem } from "../../../../components/Logout/LogoutSystem";
+import { useSessionTimeout } from "../../../../hook/useSessionTimeout";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -97,92 +98,92 @@ const Market = () => {
         </div>
 
         {/* <div
-            className={styles.filterBox}
+        className={styles.filterBox}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <Button
+          btnSize="large"
+          btnType="outline"
+          style={{
+            width: "200px",
+            marginTop: "20px",
+            fontSize: "15px",
+            height: "50px",
+          }}
+          title="Перейти в магазин"
+          onPress={() => navigation(APP_ROUTES.MAIN)}
+        />
+        <Button
+          btnSize="large"
+          btnType="outline"
+          style={{
+            width: "200px",
+            marginTop: "20px",
+            fontSize: "15px",
+            height: "50px",
+          }}
+          title="Корзина"
+          onPress={() => show("basket")}
+        />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            marginLeft: "auto",
+            border: "1px solid #FF9C20",
+            borderRadius: "8px",
+            width: "200px",
+            cursor: "pointer",
+          }}
+        >
+          <User />
+          <Button
+            btnSize="large"
+            btnType="outline"
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              gap: "12px",
+              border: "none",
+              fontSize: "15px",
+              height: "50px",
+              width: "unset",
             }}
-          >
-            <Button
-              btnSize="large"
-              btnType="outline"
-              style={{
-                width: "200px",
-                marginTop: "20px",
-                fontSize: "15px",
-                height: "50px",
-              }}
-              title="Перейти в магазин"
-              onPress={() => navigation(APP_ROUTES.MAIN)}
-            />
-            <Button
-              btnSize="large"
-              btnType="outline"
-              style={{
-                width: "200px",
-                marginTop: "20px",
-                fontSize: "15px",
-                height: "50px",
-              }}
-              title="Корзина"
-              onPress={() => show("basket")}
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                marginLeft: "auto",
-                border: "1px solid #FF9C20",
-                borderRadius: "8px",
-                width: "200px",
-                cursor: "pointer",
-              }}
-            >
-              <User />
-              <Button
-                btnSize="large"
-                btnType="outline"
-                style={{
-                  border: "none",
-                  fontSize: "15px",
-                  height: "50px",
-                  width: "unset",
-                }}
-                title="Личный кабинет"
-                onPress={() => navigation(APP_ROUTES.MAIN)}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                border: "1px solid #FF9C20",
-                borderRadius: "8px",
-                width: "200px",
-                cursor: "pointer",
-              }}
-            >
-              <Button
-                btnSize="large"
-                btnType="outline"
-                style={{
-                  border: "none",
-                  fontSize: "15px",
-                  height: "50px",
-                  width: "unset",
-                }}
-                title="Выйти из системы"
-                onPress={() => logout()}
-              />
-              <Logout />
-            </div>
-          </div> */}
+            title="Личный кабинет"
+            onPress={() => navigation(APP_ROUTES.MAIN)}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            border: "1px solid #FF9C20",
+            borderRadius: "8px",
+            width: "200px",
+            cursor: "pointer",
+          }}
+        >
+          <Button
+            btnSize="large"
+            btnType="outline"
+            style={{
+              border: "none",
+              fontSize: "15px",
+              height: "50px",
+              width: "unset",
+            }}
+            title="Выйти из системы"
+            onPress={() => logout()}
+          />
+          <Logout />
+        </div>
+      </div> */}
         <div className={styles.filterBox}>
           <div className={styles.filterLeft}>
             <Button
@@ -198,13 +199,13 @@ const Market = () => {
               onPress={() => navigation(APP_ROUTES.FAVORITES)}
             />
             {/* <Input
-                style={{
-                  width: "300px",
-                  height: "60px",
-                }}
-                iconUrl={<SearchIcon />}
-                placohlder="Поиск"
-              /> */}
+            style={{
+              width: "300px",
+              height: "60px",
+            }}
+            iconUrl={<SearchIcon />}
+            placohlder="Поиск"
+          /> */}
             <ItemComp
               icon={<Cash />}
               title="Остаток денежных средств:"
@@ -240,10 +241,10 @@ const Market = () => {
             onPress={() => show("basket")}
           />
           {/* <IconComp
-              iconType="primary"
-              onPress={() => show("basket")}
-              icon={<CaseIcon />}
-            /> */}
+          iconType="primary"
+          onPress={() => show("basket")}
+          icon={<CaseIcon />}
+        /> */}
         </div>
         <div className={styles.content}>
           <div className={styles.category}>
