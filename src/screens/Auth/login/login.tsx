@@ -73,6 +73,7 @@ const Login = () => {
             valueInput={username}
             onFocus={() => {
               setHide(true);
+              setSecondHid(false);
             }}
             // iconUrl={<SearchIcon />}
           />
