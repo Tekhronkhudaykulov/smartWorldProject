@@ -37,6 +37,8 @@ import { Dispatch, RootState } from "../../../../store";
 import Modal from "../../../../components/Modal/modal";
 import Title from "../../../../components/Title/title";
 import PaginationBox from "../../../../components/Pagination/pagination";
+import { toast, ToastContainer } from "react-toastify";
+import { LogoutSystem } from "../../../../components/Logout/LogoutSystem";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -253,7 +255,9 @@ const Market = () => {
                 <ProductItem
                   key={index}
                   imgUrl={e.image}
-                  heart={e.isFavorite ? <HeartPrimary /> : <HeartOutline />}
+                  heart={
+                    e.isFavorite === true ? <HeartPrimary /> : <HeartOutline />
+                  }
                   onHeartPress={() => {
                     dispatch.basketSlice.addFavorite({
                       shop_id: 1,
@@ -266,7 +270,9 @@ const Market = () => {
                   count={e.amount_in_cart}
                   onBuyPress={() => OnBuy(e)}
                   onBasketPress={() =>
-                    dispatch.basketSlice.add({ product_id: e.id })
+                    dispatch.basketSlice.add({
+                      product_id: e.id,
+                    })
                   }
                   // onBasketPress={() => productStore.addProducts(e)}
                 />

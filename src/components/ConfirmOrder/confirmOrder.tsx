@@ -31,9 +31,9 @@ const ConfirmOrder = () => {
       data: { shop_id: 1 },
       callback: () => {
         handlePrint();
-        // localStorage.clear();
-        // dispatch.profileSlice.logout();
-        // navigation(APP_ROUTES.WELCOME);
+        localStorage.clear();
+        dispatch.profileSlice.logout();
+        navigation(APP_ROUTES.WELCOME);
       },
     });
     hide("order");

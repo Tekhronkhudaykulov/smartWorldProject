@@ -17,6 +17,8 @@ import Text from "../Text/text";
 import GreyText from "../GreyText/greyText";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
+import { useNavigate, useNavigation } from "react-router-dom";
+import { APP_ROUTES } from "../../router/Route";
 
 const Basket = () => {
   const dispatch = useDispatch<Dispatch>();
@@ -163,6 +165,16 @@ const Basket = () => {
               disabled={cardList.length === 0 ? true : false}
               onPress={() => Submit()}
               style={{ width: "100%" }}
+            />
+            <Button
+              btnSize="large"
+              btnType="outline"
+              title="Назад"
+              style={{
+                marginTop: "10px",
+                width: "100%",
+              }}
+              onPress={() => hide("basket")}
             />
           </div>
         </div>

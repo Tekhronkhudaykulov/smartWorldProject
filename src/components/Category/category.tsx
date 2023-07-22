@@ -7,11 +7,20 @@ import Title from "../Title/title";
 import styles from "./category.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
+import { useSearchParams } from "react-router-dom";
+import { omitBy, isUndefined } from "lodash";
 
 const Category = () => {
   const [category_id, setCategory] = useState(0);
 
   const dispatch = useDispatch<Dispatch>();
+
+  const [searchParams, setSearchParams]: [any, any] = useSearchParams();
+
+  useEffect(() => {
+    const currentParams = Object.fromEntries(searchParams);
+    setSearchParams(currentParams);
+  }, [searchParams]);
 
   useEffect(() => {
     dispatch.categorySlice.getCategory();
@@ -59,8 +68,17 @@ const Category = () => {
               hover={true}
               text={e.name}
               onPress={() => {
-                dispatch.productSlice.getProduct(e.id);
+                const params = omitBy(
+                  {
+                    ...Object.fromEntries(searchParams),
+                    category_id: e.id,
+                  },
+                  isUndefined
+                );
                 setCategory(e.id);
+
+                setSearchParams(params);
+                dispatch.productSlice.getProduct(params);
               }}
             />
           );

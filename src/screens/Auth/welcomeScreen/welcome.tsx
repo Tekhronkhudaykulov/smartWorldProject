@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import Button from "../../../components/Button/button";
 import LogoName from "../../../components/LogoName/logoName";
 import { APP_ROUTES } from "../../../router/Route";
