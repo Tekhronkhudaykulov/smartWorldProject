@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState, MutableRefObject } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+import "./Keyboard.css";
 
 interface IProps {
   onChange: (input: string) => void;
