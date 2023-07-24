@@ -27,6 +27,7 @@ export type getOrderListType = {
       id: number;
       price: number;
       total_price: number;
+      amount: number;
       product: {
         name: string;
       };
