@@ -26,6 +26,7 @@ import { RootState } from "../../../../store";
 import Check from "../../../../components/Check/Check";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 
 const MainView = () => {
   const navigation = useNavigate();
@@ -60,6 +61,7 @@ const MainView = () => {
 
   let date = new Date();
 
+  LogoutProject();
   return (
     <>
       {isLoading ? (

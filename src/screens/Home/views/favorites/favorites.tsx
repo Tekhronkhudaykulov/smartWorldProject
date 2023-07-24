@@ -19,6 +19,7 @@ import Basket from "../../../../components/Basket/basket";
 import ConfirmOrder from "../../../../components/ConfirmOrder/confirmOrder";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 
 const Favorites = () => {
   const products = useRootStore().productStore;
@@ -57,6 +58,9 @@ const Favorites = () => {
     navigation(APP_ROUTES.WELCOME);
     success();
   };
+
+  LogoutProject();
+
   return (
     <div className={styles.container}>
       <ContentComp isHas={false} />

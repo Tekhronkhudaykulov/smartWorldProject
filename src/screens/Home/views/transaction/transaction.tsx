@@ -12,6 +12,7 @@ import useRootStore from "../../../../hook/useRootStore";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
+import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 
 const Transaction = () => {
   const navigation = useNavigate();
@@ -37,6 +38,8 @@ const Transaction = () => {
     </div>
   );
 };
+
+LogoutProject();
 
 export default Transaction;
 
