@@ -6,11 +6,15 @@ interface Props {
   icon?: any;
   text?: string;
   onPress?: () => void;
+  namediv?: boolean;
 }
 
-const Card: React.FC<Props> = ({ icon, text, onPress }) => {
+const Card: React.FC<Props> = ({ icon, text, onPress, namediv }) => {
   return (
-    <div className={`${styles.container} asad`} onClick={onPress}>
+    <div
+      className={`${styles.container} ${namediv && `asad`}`}
+      onClick={onPress}
+    >
       <div>{icon ? icon : null}</div>
       <Text text={text} />
     </div>

@@ -2,7 +2,7 @@ import { $api } from "../../contants/API";
 import { createModel } from "@rematch/core";
 import { RootModel } from "../modals";
 import { initialState } from "./state";
-import { getSlider } from "./type";
+import { ShopListType, getSlider } from "./type";
 
 export const OtherSlice = createModel<RootModel>()({
   state: initialState,
@@ -19,6 +19,12 @@ export const OtherSlice = createModel<RootModel>()({
         sliderListNotToken: payload,
       };
     },
+    setShopsFunction: (state, payload: ShopListType[]) => {
+      return {
+        ...state,
+        shopList: payload,
+      };
+    },
   },
 
   effects: (dispatch) => ({
@@ -32,6 +38,12 @@ export const OtherSlice = createModel<RootModel>()({
       try {
         const { data } = await $api.get("v1/main-slider/index");
         dispatch.OtherSlice.setSliderNotToken(data.data);
+      } catch (e) {}
+    },
+    async getShops() {
+      try {
+        const { data } = await $api.get("v1/shop/index");
+        dispatch.OtherSlice.setShopsFunction(data.data.data);
       } catch (e) {}
     },
   }),

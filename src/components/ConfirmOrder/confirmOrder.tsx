@@ -49,7 +49,6 @@ const ConfirmOrder = () => {
     const state = store.getState();
 
     const getOrderList = state.orderSlice?.getOrderList;
-    console.log({ getOrderList });
 
     const userList = state.profileSlice?.userList;
 

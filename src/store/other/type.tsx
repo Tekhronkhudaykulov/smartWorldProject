@@ -4,7 +4,12 @@ export type getSlider = {
   alt: string;
 };
 
+export type ShopListType = {
+  id: number;
+  name: string;
+};
 export type InitialState = {
   sliderList: getSlider[];
   sliderListNotToken: getSlider[];
+  shopList: ShopListType[];
 };

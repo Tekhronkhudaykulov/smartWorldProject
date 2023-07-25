@@ -23,7 +23,7 @@ import { APP_ROUTES } from "../../../../router/Route";
 import styles from "./main.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
-import Check from "../../../../components/Check/Check";
+// import Check from "../../../../components/Check/Check";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LogoutProject } from "../../../../hook/useFaceIdLogin";
@@ -36,6 +36,7 @@ const MainView = () => {
   useEffect(() => {
     dispatch.profileSlice.getUser();
     dispatch.basketSlice.getAddCard();
+    dispatch.OtherSlice.getShops();
   }, []);
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
@@ -62,6 +63,9 @@ const MainView = () => {
   let date = new Date();
 
   LogoutProject();
+
+  const { shopList } = useSelector((state: RootState) => state.OtherSlice);
+
   return (
     <>
       {isLoading ? (
@@ -116,16 +120,17 @@ const MainView = () => {
               titleColor={COLORS.darkBlue}
             />
           </div>
+
           <div className={styles.category}>
-            <Card
-              icon={<CaseLarge />}
-              text="Магазин"
-              onPress={() => navigation(APP_ROUTES.MARKET)}
-            />
-
-            <Card icon={<Mobile />} text="Аудиозвонки" />
-
-            <Card icon={<VideoCall />} text="Видеозвонки" />
+            <>
+              <Card
+                icon={<CaseLarge />}
+                text="Spil"
+                onPress={() => navigation(APP_ROUTES.MARKET)}
+              />
+            </>
+            <Card icon={<Mobile />} namediv={true} text="Аудиозвонки" />
+            <Card icon={<VideoCall />} namediv={true} text="Видеозвонки" />
             <a
               style={{
                 textDecoration: "none",
@@ -145,6 +150,7 @@ const MainView = () => {
               <Card icon={<Warn />} text="Мадад" />
             </a>
           </div>
+
           <div className={styles.footer}>
             <Button
               style={{ width: "350px" }}

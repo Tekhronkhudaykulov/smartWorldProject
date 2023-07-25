@@ -21,6 +21,8 @@ const Transaction = () => {
     (state: RootState) => state.loading.models.orderSlice
   );
 
+  LogoutProject();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -38,8 +40,6 @@ const Transaction = () => {
     </div>
   );
 };
-
-LogoutProject();
 
 export default Transaction;
 
