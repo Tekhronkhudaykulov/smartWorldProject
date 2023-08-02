@@ -24,7 +24,7 @@
 
 .info {
     display: flex;
-    height: 15vh;
+    height: 10vh;
     justify-content: space-between;
     padding: 10px 8%;
 }

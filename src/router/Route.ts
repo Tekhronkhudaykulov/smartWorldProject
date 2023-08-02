@@ -7,7 +7,7 @@ export enum APP_ROUTES {
   LOGIN = "/login",
 
   MAIN = "/main",
-  MARKET = "/market",
+  MARKET = "/market/:id",
   FAVORITES = "/favorites",
   TRANSACTION = "/transaction",
   ACCESS = "/access",

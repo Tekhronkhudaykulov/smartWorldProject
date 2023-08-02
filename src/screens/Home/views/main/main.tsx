@@ -62,7 +62,7 @@ const MainView = () => {
 
   let date = new Date();
 
-  LogoutProject();
+  // LogoutProject();
 
   const { shopList } = useSelector((state: RootState) => state.OtherSlice);
 
@@ -122,13 +122,13 @@ const MainView = () => {
           </div>
 
           <div className={styles.category}>
-            <>
+            {shopList.map((item) => (
               <Card
                 icon={<CaseLarge />}
-                text="Spil"
-                onPress={() => navigation(APP_ROUTES.MARKET)}
+                text={item.name}
+                onPress={() => navigation("/market/" + item.id)}
               />
-            </>
+            ))}
             <Card icon={<Mobile />} namediv={true} text="Аудиозвонки" />
             <Card icon={<VideoCall />} namediv={true} text="Видеозвонки" />
             <a

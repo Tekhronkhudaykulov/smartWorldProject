@@ -12,7 +12,7 @@ interface Props {
 const Card: React.FC<Props> = ({ icon, text, onPress, namediv }) => {
   return (
     <div
-      className={`${styles.container} ${namediv && `asad`}`}
+      className={`${styles.container} ${namediv && styles.asad}`}
       onClick={onPress}
     >
       <div>{icon ? icon : null}</div>

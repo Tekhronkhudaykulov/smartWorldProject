@@ -16,10 +16,12 @@ export type getAddCard = {
   total_price: number;
   limit_summa: number;
   balance: number;
+
   product: {
     id: number;
     name: string;
     image: string;
+    amount_in_cart: string;
   };
 };
 

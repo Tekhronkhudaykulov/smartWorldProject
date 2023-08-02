@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
   CaseIcon,
@@ -40,9 +40,11 @@ const Market = () => {
   const { show } = useRootStore().visiibleStore;
   const productStore = useRootStore().productStore;
 
+  const { id } = useParams<any>();
+
   const OnBuy = (item: any) => {
     // show("basket");
-    dispatch.basketSlice.addCard({ product_id: item.id });
+    dispatch.basketSlice.addCard({ product_id: item.id, shop_id: id });
   };
 
   const ProductCount = (id: any) => {
@@ -52,7 +54,7 @@ const Market = () => {
   const dispatch = useDispatch<Dispatch>();
 
   useEffect(() => {
-    dispatch.productSlice.getProduct("");
+    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0 });
     dispatch.profileSlice.getUser();
     dispatch.basketSlice.getAddCard();
   }, []);
@@ -76,7 +78,7 @@ const Market = () => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
-  LogoutProject();
+  // LogoutProject();
   return (
     <>
       <div className={styles.container}>
@@ -256,7 +258,7 @@ const Market = () => {
                   }
                   onHeartPress={() => {
                     dispatch.basketSlice.addFavorite({
-                      shop_id: 1,
+                      shop_id: id,
                       product_id: e.id,
                     });
                   }}
@@ -266,8 +268,9 @@ const Market = () => {
                   count={e.amount_in_cart}
                   onBuyPress={() => OnBuy(e)}
                   onBasketPress={() =>
-                    dispatch.basketSlice.add({
+                    dispatch.basketSlice.addCard({
                       product_id: e.id,
+                      shop_id: id,
                     })
                   }
                   // onBasketPress={() => productStore.addProducts(e)}

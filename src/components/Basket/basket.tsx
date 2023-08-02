@@ -17,7 +17,7 @@ import Text from "../Text/text";
 import GreyText from "../GreyText/greyText";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate, useNavigation, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../router/Route";
 
 const Basket = () => {
@@ -40,6 +40,8 @@ const Basket = () => {
   const { priceList } = useSelector((state: RootState) => state.basketSlice);
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
+
+  const { id } = useParams();
 
   return (
     <>
@@ -80,17 +82,23 @@ const Basket = () => {
                     img={e.product.image}
                     name={e.product.name}
                     price={e.price}
-                    count={e.amount}
+                    count={e.product.amount_in_cart}
                     onDelate={() =>
                       dispatch.basketSlice.removeCard({
                         product_id: e.product.id,
                       })
                     }
                     add={() =>
-                      dispatch.basketSlice.plus({ product_id: e.product.id })
+                      dispatch.basketSlice.addCard({
+                        product_id: e.product.id,
+                        shop_id: id,
+                      })
                     }
                     subt={() =>
-                      dispatch.basketSlice.minus({ product_id: e.product.id })
+                      dispatch.basketSlice.minus({
+                        product_id: e.product.id,
+                        shop_id: id,
+                      })
                     }
                     // onDelate={() => products.removeProducts(e)}
                   />

@@ -36,9 +36,9 @@ export const productSlice = createModel<RootModel>()({
   effects: (dispatch) => ({
     async getProduct(category_id) {
       try {
-        const { data } = await $api.get(`v1/product/index?shop_id=1`, {
-          params: category_id,
-        });
+        const { data } = await $api.get(
+          `v1/product/index?shop_id=${category_id.shop_id}&category_id=${category_id.category_id}`
+        );
 
         dispatch.productSlice.setProduct(data.data.data);
         dispatch.productSlice.setMeta(data.data._meta);

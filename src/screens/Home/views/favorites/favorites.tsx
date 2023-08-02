@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../../../store";
 import Order from "../../../../components/Order/order";
 import Button from "../../../../components/Button/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../../../router/Route";
 import Basket from "../../../../components/Basket/basket";
 import ConfirmOrder from "../../../../components/ConfirmOrder/confirmOrder";
@@ -24,11 +24,13 @@ import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 const Favorites = () => {
   const products = useRootStore().productStore;
 
+  const { id } = useParams();
+
   const dispatch = useDispatch<Dispatch>();
   const { show } = useRootStore().visiibleStore;
 
   useEffect(() => {
-    dispatch.basketSlice.getFavourite();
+    dispatch.basketSlice.getFavourite(id);
     dispatch.productSlice.getProduct("");
   }, []);
 
@@ -44,7 +46,7 @@ const Favorites = () => {
   };
 
   const removeFavourite = (item: any) => {
-    dispatch.basketSlice.addFavorite({ product_id: item.id, shop_id: 1 });
+    dispatch.basketSlice.addFavorite({ product_id: item.id, shop_id: id });
   };
 
   const success = () => {
@@ -169,7 +171,10 @@ const Favorites = () => {
                 count={e.amount_in_cart}
                 onBuyPress={() => OnBuy(e)}
                 onBasketPress={() =>
-                  dispatch.basketSlice.add({ product_id: e.id })
+                  dispatch.basketSlice.addCard({
+                    product_id: e.id,
+                    shop_id: id,
+                  })
                 }
                 // discount={`${e.discount} сум`}
               />

@@ -1,7 +1,7 @@
 import { Backdrop } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { COLORS } from "../../constants/colors";
 import useRootStore from "../../hook/useRootStore";
 import { APP_ROUTES } from "../../router/Route";
@@ -20,6 +20,8 @@ const ConfirmOrder = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch<Dispatch>();
 
+  const { id } = useParams();
+
   const success = () => {
     toast.success("Спасибо за покупку!", {
       autoClose: 2000,
@@ -28,7 +30,7 @@ const ConfirmOrder = () => {
 
   const Submit = () => {
     dispatch.orderSlice.orderSend({
-      data: { shop_id: 1 },
+      data: { shop_id: id },
       callback: () => {
         handlePrint();
         dispatch.profileSlice.logout();

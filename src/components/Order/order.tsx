@@ -29,7 +29,6 @@ const Order = () => {
   };
 
   const { priceList } = useSelector((state: RootState) => state.basketSlice);
-  console.log({ priceList });
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
 

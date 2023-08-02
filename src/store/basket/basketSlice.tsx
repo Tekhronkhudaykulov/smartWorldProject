@@ -30,7 +30,7 @@ export const basketSlice = createModel<RootModel>()({
     async addFavorite(payload, state) {
       try {
         await $api
-          .post("v1/product/set-favorite?shop_id=1", payload)
+          .post(`v1/product/set-favorite?shop_id=${payload.shop_id}`, payload)
           .then(() => {
             dispatch.productSlice.setProduct(
               [...state.productSlice.productList].map((item) =>
@@ -51,21 +51,29 @@ export const basketSlice = createModel<RootModel>()({
         // dispatch.productSlice.setProduct(products);
         await payload.callback?.();
         // dispatch.productSlice.getProduct("");
-        await dispatch.basketSlice.getFavourite();
+        await dispatch.basketSlice.getFavourite(payload.shop_id);
       } catch (e) {}
     },
-    async getFavourite() {
+    async getFavourite(id) {
       try {
-        const { data } = await $api.get("v1/product/favorites?shop_id=1");
+        const { data } = await $api.get(`v1/product/favorites?shop_id=${id}`);
         dispatch.basketSlice.setFavourite(data.data.data);
       } catch (e) {}
     },
-    async addCard(payload) {
+    async addCard(payload, state) {
       try {
         const { data } = await $api.post("v1/cart/add", payload);
+        const newProd = data.data.data.product;
+        const products = state.productSlice.productList.map((item) => {
+          if (item.id == newProd.id) {
+            return newProd;
+          }
+          return item;
+        });
+
+        dispatch.productSlice.setProduct(products);
         await dispatch.basketSlice.getAddCard();
-        dispatch.productSlice.getProduct("");
-        dispatch.basketSlice.getFavourite();
+        dispatch.basketSlice.getFavourite(payload.shop_id);
       } catch (e) {
         alert("У пользователя недостаточно лимита");
       }
@@ -85,14 +93,14 @@ export const basketSlice = createModel<RootModel>()({
       } catch (e) {}
     },
 
-    async plus(payload) {
-      try {
-        const { data } = await $api.post("v1/cart/add", payload);
-        dispatch.basketSlice.getAddCard();
-      } catch (e) {
-        alert("У пользователя недостаточно лимита");
-      }
-    },
+    // async plus(payload) {
+    //   try {
+    //     const { data } = await $api.post("v1/cart/add", payload);
+    //     dispatch.basketSlice.getAddCard();
+    //   } catch (e) {
+    //     alert("У пользователя недостаточно лимита");
+    //   }
+    // },
 
     async getAddCard() {
       try {
@@ -102,14 +110,15 @@ export const basketSlice = createModel<RootModel>()({
       } catch (e) {}
     },
 
-    async add(payload) {
-      try {
-        const { data } = await $api.post("v1/cart/add", payload);
-        dispatch.productSlice.getProduct("");
-        dispatch.basketSlice.getFavourite();
-      } catch (e) {
-        alert("У пользователя недостаточно лимита");
-      }
-    },
+    // async add(payload) {
+    //   console.log({ payload });
+    //   try {
+    //     const { data } = await $api.post("v1/cart/add", payload);
+    //     dispatch.productSlice.getProduct("");
+    //     dispatch.basketSlice.getFavourite();
+    //   } catch (e) {
+    //     alert("У пользователя недостаточно лимита");
+    //   }
+    // },
   }),
 });

@@ -7,20 +7,13 @@ import Title from "../Title/title";
 import styles from "./category.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { omitBy, isUndefined } from "lodash";
 
 const Category = () => {
   const [category_id, setCategory] = useState(0);
 
   const dispatch = useDispatch<Dispatch>();
-
-  const [searchParams, setSearchParams]: [any, any] = useSearchParams();
-
-  useEffect(() => {
-    const currentParams = Object.fromEntries(searchParams);
-    setSearchParams(currentParams);
-  }, [searchParams]);
 
   useEffect(() => {
     dispatch.categorySlice.getCategory();
@@ -29,6 +22,8 @@ const Category = () => {
   const { categoryList } = useSelector(
     (state: RootState) => state.categorySlice
   );
+
+  const { id } = useParams();
 
   return (
     <div className={styles.container}>
@@ -51,7 +46,7 @@ const Category = () => {
           hover={true}
           text="Все"
           onPress={() => {
-            dispatch.productSlice.getProduct("");
+            dispatch.productSlice.getProduct({ shop_id: id, category_id: "" });
             setCategory(0);
           }}
         />
@@ -68,17 +63,11 @@ const Category = () => {
               hover={true}
               text={e.name}
               onPress={() => {
-                const params = omitBy(
-                  {
-                    ...Object.fromEntries(searchParams),
-                    category_id: e.id,
-                  },
-                  isUndefined
-                );
                 setCategory(e.id);
-
-                setSearchParams(params);
-                dispatch.productSlice.getProduct(params);
+                dispatch.productSlice.getProduct({
+                  shop_id: id,
+                  category_id: e.id,
+                });
               }}
             />
           );
