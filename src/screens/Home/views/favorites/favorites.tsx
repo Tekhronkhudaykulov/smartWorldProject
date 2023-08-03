@@ -24,13 +24,11 @@ import { LogoutProject } from "../../../../hook/useFaceIdLogin";
 const Favorites = () => {
   const products = useRootStore().productStore;
 
-  const { id } = useParams();
-
   const dispatch = useDispatch<Dispatch>();
   const { show } = useRootStore().visiibleStore;
 
   useEffect(() => {
-    dispatch.basketSlice.getFavourite(id);
+    dispatch.basketSlice.getFavourite();
     dispatch.productSlice.getProduct("");
   }, []);
 
@@ -46,7 +44,9 @@ const Favorites = () => {
   };
 
   const removeFavourite = (item: any) => {
-    dispatch.basketSlice.addFavorite({ product_id: item.id, shop_id: id });
+    dispatch.basketSlice.addFavorite({
+      product_id: item.id,
+    });
   };
 
   const success = () => {
@@ -173,7 +173,7 @@ const Favorites = () => {
                 onBasketPress={() =>
                   dispatch.basketSlice.addCard({
                     product_id: e.id,
-                    shop_id: id,
+                    shop_id: 1,
                   })
                 }
                 // discount={`${e.discount} сум`}

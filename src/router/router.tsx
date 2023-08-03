@@ -14,9 +14,10 @@ import MainView from "../screens/Home/views/main/main";
 import Market from "../screens/Home/views/market/market";
 import Transaction from "../screens/Home/views/transaction/transaction";
 import { APP_ROUTES } from "./Route";
-import Authorization from "../screens/Auth/authorization/authorization";
+// import Authorization from "../screens/Auth/authorization/authorization";
 import FaceId from "../screens/Auth/faceId/faceId";
 import Login from "../screens/Auth/login/login";
+import FistPage from "../screens/Home/views/firstPage/FistPage";
 
 function RequireAuth({ children }: any) {
   const token = localStorage.getItem("@token");
@@ -37,6 +38,7 @@ const Router = () => {
       <Routes>
         <Route path={APP_ROUTES.LOGIN} element={<Login />} />
         <Route path={APP_ROUTES.WELCOME} element={<WelcomeScreen />} />
+
         {/* <Route path={APP_ROUTES.AUTH} element={<Authorization />} /> */}
         <Route path={APP_ROUTES.FACE_ID} element={<FaceId />} />
         {/* <Route path={APP_ROUTES.TOUCH_ID} element={<TouchIdScreen />} /> */}

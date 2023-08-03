@@ -258,7 +258,6 @@ const Market = () => {
                   }
                   onHeartPress={() => {
                     dispatch.basketSlice.addFavorite({
-                      shop_id: id,
                       product_id: e.id,
                     });
                   }}

@@ -29,17 +29,15 @@ export const basketSlice = createModel<RootModel>()({
   effects: (dispatch) => ({
     async addFavorite(payload, state) {
       try {
-        await $api
-          .post(`v1/product/set-favorite?shop_id=${payload.shop_id}`, payload)
-          .then(() => {
-            dispatch.productSlice.setProduct(
-              [...state.productSlice.productList].map((item) =>
-                item.id === payload.product_id
-                  ? { ...item, isFavorite: !item.isFavorite }
-                  : { ...item }
-              )
-            );
-          });
+        await $api.post(`v1/product/set-favorite`, payload).then(() => {
+          dispatch.productSlice.setProduct(
+            [...state.productSlice.productList].map((item) =>
+              item.id === payload.product_id
+                ? { ...item, isFavorite: !item.isFavorite }
+                : { ...item }
+            )
+          );
+        });
 
         // const newProd = data.data;
         // const products = state.productSlice.productList.map((item) => {
@@ -51,12 +49,12 @@ export const basketSlice = createModel<RootModel>()({
         // dispatch.productSlice.setProduct(products);
         await payload.callback?.();
         // dispatch.productSlice.getProduct("");
-        await dispatch.basketSlice.getFavourite(payload.shop_id);
+        await dispatch.basketSlice.getFavourite();
       } catch (e) {}
     },
-    async getFavourite(id) {
+    async getFavourite() {
       try {
-        const { data } = await $api.get(`v1/product/favorites?shop_id=${id}`);
+        const { data } = await $api.get(`v1/product/favorites?shop_id=1`);
         dispatch.basketSlice.setFavourite(data.data.data);
       } catch (e) {}
     },
@@ -73,7 +71,7 @@ export const basketSlice = createModel<RootModel>()({
 
         dispatch.productSlice.setProduct(products);
         await dispatch.basketSlice.getAddCard();
-        dispatch.basketSlice.getFavourite(payload.shop_id);
+        dispatch.basketSlice.getFavourite();
       } catch (e) {
         alert("У пользователя недостаточно лимита");
       }

@@ -47,20 +47,22 @@ const MainView = () => {
     (state: RootState) => state.loading.models.profileSlice
   );
 
-  const success = () => {
-    toast.success("Спасибо за покупку!", {
-      autoClose: 2000,
-    });
-  };
+  // const success = () => {
+  //   toast.success("Спасибо за покупку!", {
+  //     autoClose: 2000,
+  //   });
+  // };
 
   const logout = () => {
     localStorage.clear();
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
-    success();
+    // success();
   };
 
   let date = new Date();
+
+  const { toast } = useSelector((state: RootState) => state.orderSlice);
 
   // LogoutProject();
 
@@ -68,6 +70,32 @@ const MainView = () => {
 
   return (
     <>
+      {toast && (
+        <div
+          className={styles.popup}
+          onClick={() => dispatch.orderSlice.isResultFunction(false)}
+        >
+          <div className={styles.modal}>
+            {/* <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#000000"
+              width="200px"
+              height="200px"
+              viewBox="0 0 14 14"
+              role="img"
+              focusable="false"
+              aria-hidden="true"
+            >
+              <path
+                fill="green"
+                d="M13 4.1974q0 .3097-.21677.5265L7.17806 10.329l-1.0529 1.0529q-.21677.2168-.52645.2168-.30968 0-.52645-.2168L4.01935 10.329 1.21677 7.5264Q1 7.3097 1 7t.21677-.5265l1.05291-1.0529q.21677-.2167.52645-.2167.30968 0 .52645.2167l2.27613 2.2839 5.07871-5.0864q.21677-.2168.52645-.2168.30968 0 .52645.2168l1.05291 1.0529Q13 3.8877 13 4.1974z"
+              />
+            </svg> */}
+            <p>Спасибо за покупку !</p>
+            <p>Ждем вас снова!</p>
+          </div>
+        </div>
+      )}
       {isLoading ? (
         <div
           style={{

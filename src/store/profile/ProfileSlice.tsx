@@ -20,6 +20,12 @@ export const profileSlice = createModel<RootModel>()({
         token: payload,
       };
     },
+    setLogout: (state, payload) => {
+      return {
+        ...state,
+        logout: payload,
+      };
+    },
   },
   effects: (dispatch) => ({
     async getUser() {
@@ -30,9 +36,11 @@ export const profileSlice = createModel<RootModel>()({
         dispatch.profileSlice.setUser(data);
       } catch (e) {}
     },
+
     async logout() {
       try {
         const { data } = await $api.get("v1/user/log-out");
+        await dispatch.profileSlice.setLogout(true);
       } catch (e) {}
     },
   }),
