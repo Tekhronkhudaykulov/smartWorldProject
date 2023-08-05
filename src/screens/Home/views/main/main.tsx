@@ -64,7 +64,7 @@ const MainView = () => {
 
   const { toast } = useSelector((state: RootState) => state.orderSlice);
 
-  // LogoutProject();
+  LogoutProject();
 
   const { shopList } = useSelector((state: RootState) => state.OtherSlice);
 

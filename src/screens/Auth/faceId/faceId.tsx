@@ -9,10 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/Route";
 
 const FaceId = () => {
-  useFaceIdLogin();
-
   const navigation = useNavigate();
-
+  useFaceIdLogin();
   return (
     <div className={styles.container}>
       <LogoName />

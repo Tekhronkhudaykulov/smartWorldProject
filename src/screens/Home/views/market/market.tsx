@@ -78,7 +78,7 @@ const Market = () => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
-  // LogoutProject();
+  LogoutProject();
   return (
     <>
       <div className={styles.container}>

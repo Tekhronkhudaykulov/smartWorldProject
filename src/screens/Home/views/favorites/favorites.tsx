@@ -63,6 +63,10 @@ const Favorites = () => {
 
   LogoutProject();
 
+  const handleGoBack = () => {
+    navigation(-1);
+  };
+
   return (
     <div className={styles.container}>
       <ContentComp isHas={false} />
@@ -89,7 +93,7 @@ const Favorites = () => {
             height: "50px",
           }}
           title="Перейти в магазин"
-          onPress={() => navigation(APP_ROUTES.MARKET)}
+          onPress={handleGoBack}
         />
         {/* <Button
           btnSize="large"
