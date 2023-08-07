@@ -66,6 +66,11 @@ const MainView = () => {
 
   LogoutProject();
 
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch.orderSlice.isResultFunction(false);
+    }, 5000);
+  }, []);
   const { shopList } = useSelector((state: RootState) => state.OtherSlice);
 
   return (

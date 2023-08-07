@@ -23,6 +23,12 @@ const WelcomeScreen = () => {
 
   const { logout } = useSelector((state: RootState) => state.profileSlice);
 
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch.profileSlice.setLogout(false);
+    }, 5000);
+  }, []);
+
   return (
     <>
       <div>
