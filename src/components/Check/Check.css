@@ -4,8 +4,8 @@
 }
 .check > div {
   color: #000;
-  font-size: 19px;
-  font-weight: 800;
+  font-size: 25px;
+  font-weight: bold;
 }
 .check hr {
   display: block;

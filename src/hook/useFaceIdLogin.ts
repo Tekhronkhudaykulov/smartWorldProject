@@ -24,6 +24,7 @@ export const useFaceIdLogin = () => {
       const token = JSON.parse(data.data).data.auth_key;
       console.log({ token });
       localStorage.setItem("@token", token);
+      console.log({ token });
       $api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       if (token) {
         navigation(APP_ROUTES.MAIN);
