@@ -10,6 +10,7 @@ import { useFaceIdLogin } from "../../../hook/useFaceIdLogin";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Carousel from "nuka-carousel/lib/carousel";
 
 const WelcomeScreen = () => {
   const navigation = useNavigate();
@@ -29,11 +30,11 @@ const WelcomeScreen = () => {
     }, 5000);
   }, []);
 
+  const { sliderListNotToken } = useSelector(
+    (state: RootState) => state.OtherSlice
+  );
   return (
     <>
-      <div>
-        <ToastContainer position="top-right" />
-      </div>
       {logout && (
         <div
           className={styles.popup}
@@ -67,7 +68,19 @@ const WelcomeScreen = () => {
             onPress={() => navigation(APP_ROUTES.LOGIN)}
           />
 
-          <div className={styles.containerSlider}></div>
+          <div className={styles.containerSlider}>
+            <Carousel autoplay={true}>
+              {sliderListNotToken.map((item) => (
+                <>
+                  <img
+                    onClick={() => navigation(APP_ROUTES.BANNER)}
+                    style={{ height: "100vh" }}
+                    src={`${baseUrl}/${item.path}`}
+                  />
+                </>
+              ))}
+            </Carousel>
+          </div>
         </div>
       </div>
     </>

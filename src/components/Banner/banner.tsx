@@ -11,10 +11,11 @@ const Banner = () => {
   const disptach = useDispatch<Dispatch>();
 
   useEffect(() => {
-    disptach.OtherSlice.getSliderLoad();
+    disptach.OtherSlice.getSliderNotToken();
   }, []);
-
-  const { sliderList } = useSelector((state: RootState) => state.OtherSlice);
+  const { sliderListNotToken } = useSelector(
+    (state: RootState) => state.OtherSlice
+  );
   return (
     <div className={styles.container}>
       <Carousel
@@ -25,7 +26,7 @@ const Banner = () => {
           width: "100%",
         }}
       >
-        {sliderList.map((item) => (
+        {sliderListNotToken.map((item) => (
           <>
             <div
               style={{

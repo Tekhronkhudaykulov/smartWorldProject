@@ -5,10 +5,12 @@ import { APP_ROUTES } from "../../router/Route";
 import Banner from "../Banner/banner";
 import IconComp from "../IconComp/iconComp";
 import styles from "./contentComp.module.css";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Carousel from "nuka-carousel/lib/carousel";
+import { baseUrl } from "../../contants/API";
 
 interface Props {
   iconPress?: () => void;
@@ -33,6 +35,10 @@ const ContentComp: React.FC<Props> = ({ iconPress, isHas }) => {
     success();
   };
 
+  const { sliderListNotToken } = useSelector(
+    (state: RootState) => state.OtherSlice
+  );
+
   return (
     <div className={styles.header}>
       <div>
@@ -52,6 +58,7 @@ const ContentComp: React.FC<Props> = ({ iconPress, isHas }) => {
           />
         )}
       </div>
+
       <Banner />
     </div>
   );

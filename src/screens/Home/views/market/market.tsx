@@ -13,7 +13,6 @@ import {
   SearchIcon,
   User,
 } from "../../../../assets/icons";
-import Banner from "../../../../components/Banner/banner";
 import Basket from "../../../../components/Basket/basket";
 import Button from "../../../../components/Button/button";
 import Category from "../../../../components/Category/category";
@@ -78,7 +77,7 @@ const Market = () => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
-  LogoutProject();
+  // LogoutProject();
   return (
     <>
       <div className={styles.container}>

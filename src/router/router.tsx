@@ -18,6 +18,7 @@ import { APP_ROUTES } from "./Route";
 import FaceId from "../screens/Auth/faceId/faceId";
 import Login from "../screens/Auth/login/login";
 import FistPage from "../screens/Home/views/firstPage/FistPage";
+import BannerForWindow from "../components/Banner/BannerFowWindow";
 
 function RequireAuth({ children }: any) {
   const token = localStorage.getItem("@token");
@@ -37,7 +38,8 @@ const Router = () => {
     <HashRouter>
       <Routes>
         <Route path={APP_ROUTES.LOGIN} element={<Login />} />
-        <Route path={APP_ROUTES.WELCOME} element={<WelcomeScreen />} />
+        <Route path={APP_ROUTES.BANNER} element={<WelcomeScreen />} />
+        <Route path={APP_ROUTES.WELCOME} element={<BannerForWindow />} />
 
         {/* <Route path={APP_ROUTES.AUTH} element={<Authorization />} /> */}
         <Route path={APP_ROUTES.FACE_ID} element={<FaceId />} />

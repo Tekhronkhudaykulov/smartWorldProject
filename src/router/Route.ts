@@ -6,6 +6,7 @@ export enum APP_ROUTES {
   TOUCH_ID = "/auth/touch-id",
   LOGIN = "/login",
 
+  BANNER = "/banner",
   MAIN = "/main",
   MARKET = "/market/:id",
   FAVORITES = "/favorites",

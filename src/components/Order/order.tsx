@@ -20,6 +20,8 @@ import { useNavigate, useNavigation } from "react-router-dom";
 import { APP_ROUTES } from "../../router/Route";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Carousel from "nuka-carousel/lib/carousel";
+import { baseUrl } from "../../contants/API";
 
 const Order = () => {
   const { visiable, show, hide } = useRootStore().visiibleStore;
@@ -49,6 +51,13 @@ const Order = () => {
     success();
   };
 
+  useEffect(() => {
+    dispatch.OtherSlice.getSliderNotToken();
+  }, []);
+
+  const { sliderListNotToken } = useSelector(
+    (state: RootState) => state.OtherSlice
+  );
   return (
     <div
       className={styles.container}
@@ -89,7 +98,16 @@ const Order = () => {
               >
                 Реклама
               </div>
-              <img src={ASSETS.bannner} alt="" />
+              <Carousel autoplay={true}>
+                {sliderListNotToken.map((item) => (
+                  <>
+                    <img
+                      onClick={() => navigation(APP_ROUTES.BANNER)}
+                      src={`${baseUrl}/${item.path}`}
+                    />
+                  </>
+                ))}
+              </Carousel>
             </div>
           </div>
           <div
