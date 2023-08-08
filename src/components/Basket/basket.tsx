@@ -62,7 +62,6 @@ const Basket = () => {
               }}
               onClick={() => {
                 hide("basket");
-                dispatch.productSlice.getProduct("");
               }}
             >
               <CloseIcon />

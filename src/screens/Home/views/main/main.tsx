@@ -163,7 +163,13 @@ const MainView = () => {
               <Card
                 icon={<CaseLarge />}
                 text={item.name}
-                onPress={() => navigation("/market/" + item.id)}
+                onPress={() => {
+                  navigation("/market/" + item.id);
+                  dispatch.productSlice.getProduct({
+                    shop_id: item.id,
+                    category_id: 0,
+                  });
+                }}
               />
             ))}
             <Card icon={<Mobile />} namediv={true} text="Аудиозвонки" />
