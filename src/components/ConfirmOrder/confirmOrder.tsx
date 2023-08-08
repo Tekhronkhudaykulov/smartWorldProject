@@ -119,6 +119,15 @@ const ConfirmOrder = () => {
       //   </div>
       // </div>
       <div className="check">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {getOrderList.shop?.name}
+        </div>
         <div>Номер заказа: {getOrderList.id}</div>
         <div>
           Дата/время: {getOrderList.created_at} {getOrderList.created_time}
@@ -132,7 +141,7 @@ const ConfirmOrder = () => {
               <div> {item.product.name}</div>
               <div className="check-block">
                 <div style={{ marginLeft: "1rem" }}>
-                  {item.amount} x {item.price?.toLocaleString("ru-RU")}
+                  {item.count} x {item.price?.toLocaleString("ru-RU")}
                 </div>
                 <div>= {item.total_price?.toLocaleString("ru-RU")} So'm</div>
               </div>
@@ -140,13 +149,14 @@ const ConfirmOrder = () => {
           );
         })}
         <hr />
+
+        <div className="check-block">
+          <div>Итого:</div>
+          <div>{getOrderList.total_price?.toLocaleString("ru-RU")}</div>
+        </div>
         <div className="check-block">
           <div>Лимит:</div>
           <div>{userList.limit_summa?.toLocaleString("ru-RU")}</div>
-        </div>
-        <div className="check-block">
-          <div>Выб.тов.на.сумму:</div>
-          <div>{getOrderList.total_price}</div>
         </div>
         <div className="check-block">
           <div>Остаток:</div>

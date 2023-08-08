@@ -39,6 +39,9 @@ export type getOrderListType = {
     limit_summa: number;
     id: number;
   };
+  shop: {
+    name: string;
+  };
   price: number;
   total_price: number;
 };

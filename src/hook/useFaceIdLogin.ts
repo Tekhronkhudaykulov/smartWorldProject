@@ -37,19 +37,45 @@ export const LogoutProject = () => {
 
   const navigation = useNavigate();
 
-  const success = () => {
-    toast.success("Спасибо за покупку!", {
-      autoClose: 2000,
-    });
-  };
   const handleOnUserIdle = () => {
     localStorage.clear();
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
-    success();
   };
   useIdleTimer({
-    timeout: 30000,
+    timeout: 10000,
+    onIdle: handleOnUserIdle,
+    debounce: 500,
+  });
+};
+
+export const LogoutForFirstPage = () => {
+  const dispatch = useDispatch();
+
+  const navigation = useNavigate();
+
+  const handleOnUserIdle = () => {
+    navigation(APP_ROUTES.WELCOME);
+  };
+  useIdleTimer({
+    timeout: 10000,
+    onIdle: handleOnUserIdle,
+    debounce: 500,
+  });
+};
+
+export const LogoutForMainAndMarketPage = () => {
+  const dispatch = useDispatch();
+
+  const navigation = useNavigate();
+
+  const handleOnUserIdle = () => {
+    localStorage.clear();
+    dispatch.profileSlice.logout();
+    navigation(APP_ROUTES.BANNER);
+  };
+  useIdleTimer({
+    timeout: 10000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });

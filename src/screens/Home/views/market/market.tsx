@@ -32,7 +32,10 @@ import { Dispatch, RootState } from "../../../../store";
 import Modal from "../../../../components/Modal/modal";
 import Title from "../../../../components/Title/title";
 import PaginationBox from "../../../../components/Pagination/pagination";
-import { LogoutProject } from "../../../../hook/useFaceIdLogin";
+import {
+  LogoutForMainAndMarketPage,
+  LogoutProject,
+} from "../../../../hook/useFaceIdLogin";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -78,6 +81,7 @@ const Market = () => {
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
   // LogoutProject();
+  LogoutForMainAndMarketPage();
   return (
     <>
       <div className={styles.container}>

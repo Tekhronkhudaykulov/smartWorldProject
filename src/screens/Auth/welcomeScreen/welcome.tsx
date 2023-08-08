@@ -6,7 +6,11 @@ import styles from "./welcome.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../../store";
 import { baseUrl } from "../../../contants/API";
-import { useFaceIdLogin } from "../../../hook/useFaceIdLogin";
+import {
+  LogoutForFirstPage,
+  LogoutProject,
+  useFaceIdLogin,
+} from "../../../hook/useFaceIdLogin";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,9 +34,12 @@ const WelcomeScreen = () => {
     }, 5000);
   }, []);
 
+  LogoutForFirstPage();
+
   const { sliderListNotToken } = useSelector(
     (state: RootState) => state.OtherSlice
   );
+
   return (
     <>
       {logout && (

@@ -26,7 +26,10 @@ import { RootState } from "../../../../store";
 // import Check from "../../../../components/Check/Check";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LogoutProject } from "../../../../hook/useFaceIdLogin";
+import {
+  LogoutForMainAndMarketPage,
+  LogoutProject,
+} from "../../../../hook/useFaceIdLogin";
 
 const MainView = () => {
   const navigation = useNavigate();
@@ -37,6 +40,12 @@ const MainView = () => {
     dispatch.profileSlice.getUser();
     dispatch.basketSlice.getAddCard();
     dispatch.OtherSlice.getShops();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch.orderSlice.isResultFunction(false);
+    }, 5000);
   }, []);
 
   const { userList } = useSelector((state: RootState) => state.profileSlice);
@@ -56,7 +65,7 @@ const MainView = () => {
   const logout = () => {
     localStorage.clear();
     dispatch.profileSlice.logout();
-    navigation(APP_ROUTES.WELCOME);
+    navigation(APP_ROUTES.BANNER);
     // success();
   };
 
@@ -64,13 +73,8 @@ const MainView = () => {
 
   const { toast } = useSelector((state: RootState) => state.orderSlice);
 
-  LogoutProject();
+  LogoutForMainAndMarketPage();
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch.orderSlice.isResultFunction(false);
-    }, 5000);
-  }, []);
   const { shopList } = useSelector((state: RootState) => state.OtherSlice);
 
   return (
