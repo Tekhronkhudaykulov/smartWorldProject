@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = `https://spil.four-seasons.uz`;
+const baseUrl = `https://smart-dunyo.uz`;
 
 const url = baseUrl + `/api`;
 

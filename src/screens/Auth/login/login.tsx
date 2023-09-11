@@ -109,7 +109,7 @@ const Login = () => {
             style={{
               marginTop: "30px",
             }}
-            onPress={() => navigation(APP_ROUTES.WELCOME)}
+            onPress={() => navigation(APP_ROUTES.FACE_ID)}
           />
         </div>
         {hide && (

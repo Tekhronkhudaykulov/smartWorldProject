@@ -1,5 +1,6 @@
 import React from "react";
-import Carousel from "nuka-carousel/lib/carousel";
+import Carousel from "nuka-carousel";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import { baseUrl } from "../../../../contants/API";

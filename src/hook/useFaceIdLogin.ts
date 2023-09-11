@@ -1,9 +1,14 @@
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../store";
 import { $api } from "../contants/API";
 import { APP_ROUTES } from "../router/Route";
-import { useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useIdleTimer } from "react-idle-timer";
@@ -13,10 +18,10 @@ export const useFaceIdLogin = () => {
 
   const dispatch = useDispatch<Dispatch>();
 
+  const tokenForSocet = localStorage.getItem("@firstToken");
+
   const socket = useRef<WebSocket>(
-    new WebSocket(
-      "wss://spil-socket.four-seasons.uz?token=3ZaRPOqVebdMtu_MG1vITN1n66Gb2e9O"
-    )
+    new WebSocket(`wss://spil-socket.four-seasons.uz?token=${tokenForSocet}`)
   );
 
   useEffect(() => {

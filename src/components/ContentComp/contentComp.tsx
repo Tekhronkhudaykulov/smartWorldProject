@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Carousel from "nuka-carousel/lib/carousel";
+import Carousel from "nuka-carousel";
+
 import { baseUrl } from "../../contants/API";
 
 interface Props {

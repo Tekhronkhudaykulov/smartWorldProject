@@ -19,6 +19,9 @@ import FaceId from "../screens/Auth/faceId/faceId";
 import Login from "../screens/Auth/login/login";
 import FistPage from "../screens/Home/views/firstPage/FistPage";
 import BannerForWindow from "../components/Banner/BannerFowWindow";
+import Auth from "../components/Auth/Auth";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 function RequireAuth({ children }: any) {
   const token = localStorage.getItem("@token");
@@ -37,6 +40,7 @@ const Router = () => {
   return (
     <HashRouter>
       <Routes>
+        <Route path={APP_ROUTES.FIRSTAUTH} element={<Auth />} />
         <Route path={APP_ROUTES.LOGIN} element={<Login />} />
         <Route path={APP_ROUTES.BANNER} element={<WelcomeScreen />} />
         <Route path={APP_ROUTES.WELCOME} element={<BannerForWindow />} />

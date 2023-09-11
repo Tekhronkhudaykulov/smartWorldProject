@@ -14,7 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Carousel from "nuka-carousel/lib/carousel";
+import Carousel from "nuka-carousel";
 
 const WelcomeScreen = () => {
   const navigation = useNavigate();
