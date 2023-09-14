@@ -66,7 +66,10 @@ const WelcomeScreen = () => {
             style={{
               marginTop: "-50px",
             }}
-            onPress={() => navigation(APP_ROUTES.FACE_ID)}
+            onPress={() => {
+              dispatch.authSlice.clickForLogin();
+              navigation(APP_ROUTES.FACE_ID);
+            }}
           />
           <Button
             btnSize="large"

@@ -22,5 +22,15 @@ export const authSlice = createModel<RootModel>()({
         dispatch.authSlice.getToken(data.token);
       } catch (e) {}
     },
+    async clickForLogin() {
+      try {
+        const { data } = await $api.get("dahua/login-start");
+      } catch (e) {}
+    },
+    async clickForRegister() {
+      try {
+        const { data } = await $api.get("dahua/register-start");
+      } catch (e) {}
+    },
   }),
 });

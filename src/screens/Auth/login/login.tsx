@@ -34,6 +34,7 @@ const Login = () => {
     try {
       const data = await $api.post("v1/user/login", payload);
       navigation(APP_ROUTES.FACE_ID);
+      dispatch.authSlice.clickForRegister();
     } catch (e) {
       error();
     }
@@ -57,6 +58,8 @@ const Login = () => {
     setPassword(input);
     keyboardValue.current.setPassword(input);
   };
+
+  const dispatch = useDispatch<Dispatch>();
 
   return (
     <>
@@ -109,7 +112,10 @@ const Login = () => {
             style={{
               marginTop: "30px",
             }}
-            onPress={() => navigation(APP_ROUTES.FACE_ID)}
+            onPress={() => {
+              navigation(APP_ROUTES.FACE_ID);
+              dispatch.authSlice.clickForLogin();
+            }}
           />
         </div>
         {hide && (
