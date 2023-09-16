@@ -21,7 +21,7 @@ export const useFaceIdLogin = () => {
   const tokenForSocet = localStorage.getItem("@firstToken");
 
   const socket = useRef<WebSocket>(
-    new WebSocket(`wss://spil-socket.four-seasons.uz?token=${tokenForSocet}`)
+    new WebSocket(`wss://smart-dunyo.uz/socket?token=${tokenForSocet}`)
   );
 
   useEffect(() => {
