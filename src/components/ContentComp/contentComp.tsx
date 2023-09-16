@@ -30,7 +30,7 @@ const ContentComp: React.FC<Props> = ({ iconPress, isHas }) => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("@token");
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
     success();

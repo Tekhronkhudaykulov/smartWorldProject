@@ -56,7 +56,7 @@ const Favorites = () => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("@token");
     navigation(APP_ROUTES.WELCOME);
     success();
   };

@@ -43,7 +43,7 @@ export const LogoutProject = () => {
   const navigation = useNavigate();
 
   const handleOnUserIdle = () => {
-    localStorage.clear();
+    localStorage.removeItem("@token");
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.WELCOME);
   };
@@ -75,7 +75,7 @@ export const LogoutForMainAndMarketPage = () => {
   const navigation = useNavigate();
 
   const handleOnUserIdle = () => {
-    localStorage.clear();
+    localStorage.removeItem("@token");
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.BANNER);
   };

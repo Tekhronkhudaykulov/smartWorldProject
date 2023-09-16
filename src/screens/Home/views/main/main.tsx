@@ -63,7 +63,7 @@ const MainView = () => {
   // };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("@token");
     dispatch.profileSlice.logout();
     navigation(APP_ROUTES.BANNER);
     // success();
