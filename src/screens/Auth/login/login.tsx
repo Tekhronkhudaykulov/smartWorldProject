@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-simple-keyboard/build/css/index.css";
 import KeyboardWrapper from "../../../components/Keyboard/Keyboard";
 import SecondKeyboard from "../../../components/Keyboard/SecondKeyboard";
+import KeyboardForRegister from "../../../components/Keyboard/KeyboardForRegister";
 
 const Login = () => {
   const navigation = useNavigate();
@@ -119,7 +120,7 @@ const Login = () => {
           />
         </div>
         {hide && (
-          <KeyboardWrapper keyboardRef={keyboard} onChange={setUserName} />
+          <KeyboardForRegister keyboardRef={keyboard} onChange={setUserName} />
         )}
         {secondHide && (
           <SecondKeyboard keyboardRef={keyboardValue} onChange={setPassword} />

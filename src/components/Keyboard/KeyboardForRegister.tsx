@@ -8,7 +8,7 @@ interface IProps {
   keyboardRef: MutableRefObject<any>;
 }
 
-const KeyboardWrapper: FunctionComponent<IProps> = ({
+const KeyboardForRegister: FunctionComponent<IProps> = ({
   onChange,
   keyboardRef,
 }) => {
@@ -26,8 +26,18 @@ const KeyboardWrapper: FunctionComponent<IProps> = ({
       layoutName={layoutName}
       onChange={onChange}
       onRender={() => console.log("Rendered")}
+      layout={{
+        default: [
+          "1 2 3 4 5 6 7 8 9 0",
+          "й ц у к е н г ш щ з ь",
+          "х ъ ф ы в а п р о л б",
+          "д ж э ё я ч с м и т ю",
+          ".",
+          "{space}",
+        ],
+      }}
     />
   );
 };
 
-export default KeyboardWrapper;
+export default KeyboardForRegister;

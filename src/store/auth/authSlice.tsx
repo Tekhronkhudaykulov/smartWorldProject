@@ -24,12 +24,14 @@ export const authSlice = createModel<RootModel>()({
     },
     async clickForLogin() {
       try {
-        const { data } = await $api.get("dahua/login-start");
+        const token = localStorage.getItem("@firstToken");
+        const { data } = await $api.get(`dahua/login-start?token=${token}`);
       } catch (e) {}
     },
     async clickForRegister() {
       try {
-        const { data } = await $api.get("dahua/register-start");
+        const token = localStorage.getItem("@firstToken");
+        const { data } = await $api.get(`dahua/register-start?token=${token}`);
       } catch (e) {}
     },
   }),
