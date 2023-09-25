@@ -2,6 +2,7 @@ export type getSlider = {
   id: number;
   path: string;
   alt: string;
+  title: string;
 };
 
 export type ShopListType = {
