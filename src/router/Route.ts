@@ -5,7 +5,7 @@ export enum APP_ROUTES {
   FACE_ID = "/auth/face-id",
   TOUCH_ID = "/auth/touch-id",
   LOGIN = "/login",
-  FIRSTAUTH = "/firstAuth",
+  // FIRSTAUTH = "/firstAuth",
   BANNER = "/banner",
   MAIN = "/main",
   MARKET = "/market/:id",

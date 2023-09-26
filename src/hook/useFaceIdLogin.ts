@@ -18,7 +18,9 @@ export const useFaceIdLogin = () => {
 
   const dispatch = useDispatch<Dispatch>();
 
-  const tokenForSocet = localStorage.getItem("@firstToken");
+  const tokenForSocet = "NirjBn5zB1axwpZr2PV8wlUTzJcCdcYh";
+
+  console.log({ tokenForSocet });
 
   const socket = useRef<WebSocket>(
     new WebSocket(`wss://smart-dunyo.uz/socket?token=${tokenForSocet}`)

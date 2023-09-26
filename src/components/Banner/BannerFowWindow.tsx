@@ -25,13 +25,13 @@ const BannerForWindow = () => {
 
   const navigation = useNavigate();
 
-  const token = localStorage.getItem("@firstToken");
+  // const token = localStorage.getItem("@firstToken");
 
-  useEffect(() => {
-    if (!token) {
-      navigation(APP_ROUTES.FIRSTAUTH);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigation(APP_ROUTES.FIRSTAUTH);
+  //   }
+  // }, []);
 
   return (
     <Swiper

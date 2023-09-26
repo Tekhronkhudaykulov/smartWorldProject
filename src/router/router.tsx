@@ -40,7 +40,7 @@ const Router = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path={APP_ROUTES.FIRSTAUTH} element={<Auth />} />
+        {/* <Route path={APP_ROUTES.FIRSTAUTH} element={<Auth />} /> */}
         <Route path={APP_ROUTES.LOGIN} element={<Login />} />
         <Route path={APP_ROUTES.BANNER} element={<WelcomeScreen />} />
         <Route path={APP_ROUTES.WELCOME} element={<BannerForWindow />} />

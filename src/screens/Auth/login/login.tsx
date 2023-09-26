@@ -35,7 +35,7 @@ const Login = () => {
     try {
       const data = await $api.post("v1/user/login", payload);
       navigation(APP_ROUTES.FACE_ID);
-      dispatch.authSlice.clickForRegister();
+      // dispatch.authSlice.clickForRegister();
     } catch (e) {
       error();
     }
@@ -103,7 +103,11 @@ const Login = () => {
               marginTop: "30px",
             }}
             onPress={() => {
-              dataSend({ username, password });
+              dataSend({
+                username,
+                password,
+                token: "NirjBn5zB1axwpZr2PV8wlUTzJcCdcYh",
+              });
             }}
           />
           <Button
