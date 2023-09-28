@@ -28,7 +28,7 @@ export const useFaceIdLogin = () => {
 
   useEffect(() => {
     socket.current.onmessage = (data: any) => {
-      const token = JSON.parse(data.data).data?.auth_key;
+      const token = JSON.parse(data.data).data.auth_key;
       localStorage.setItem("@token", token);
       $api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       if (token) {
