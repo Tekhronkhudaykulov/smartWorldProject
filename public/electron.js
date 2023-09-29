@@ -24,8 +24,6 @@ function createWindow() {
     },
   });
 
-  // mainWindow.webContents.openDevTools();
-
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -39,6 +37,7 @@ function createWindow() {
   });
 
   workerWindow = new BrowserWindow({
+    width: 302,
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -51,16 +50,17 @@ function createWindow() {
 
 // retransmit it to workerWindow
 ipcMain.on("printPDF", (even, content) => {
-  console.log(content);
   workerWindow.webContents.send("printPDF", content);
 });
 
 // when worker window is ready
 ipcMain.on("readyToPrintPDF", (event) => {
   const pdfPath = path.join(os.tmpdir(), "print.pdf");
-  // Use default printing options
   workerWindow.webContents
-    .printToPDF({})
+    .printToPDF({
+      pageSize: { width: 3.14961, height: 7 },
+      margins: { marginType: "none", bottom: 0, left: 0, top: 0, right: 0 },
+    })
     .then((data) => {
       fs.writeFile(pdfPath, data, function (error) {
         if (error) {
