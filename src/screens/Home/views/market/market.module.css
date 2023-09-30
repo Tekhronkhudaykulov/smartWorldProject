@@ -36,8 +36,24 @@
 }
 
 
-.pagination{
+/* .pagination{
     padding: 0px 6% 10px;
     display: flex;
     justify-content: center;
+} */
+
+.paginate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+    padding: 0 20px;
+    color: #FF9C20;
+    width: 80%;
+}
+

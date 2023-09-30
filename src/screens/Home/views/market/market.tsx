@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import {
   CaseIcon,
@@ -36,6 +36,7 @@ import {
   LogoutForMainAndMarketPage,
   LogoutProject,
 } from "../../../../hook/useFaceIdLogin";
+import ReactPaginate from "react-paginate";
 
 const Market = () => {
   const navigation = useNavigate();
@@ -56,7 +57,7 @@ const Market = () => {
   const dispatch = useDispatch<Dispatch>();
 
   useEffect(() => {
-    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0 });
+    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0, page: 1 });
     dispatch.profileSlice.getUser();
     dispatch.basketSlice.getAddCard();
   }, []);
@@ -80,8 +81,16 @@ const Market = () => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
 
+  const { meta } = useSelector((state: RootState) => state.productSlice);
+
+  console.log(meta);
+
   // LogoutProject();
   LogoutForMainAndMarketPage();
+
+  const handlePagination = (page: any) => {
+    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0, page });
+  };
   return (
     <>
       <div className={styles.container}>
@@ -281,11 +290,21 @@ const Market = () => {
             })}
           </div>
         </div>
-        <div className={styles.pagination}>
-          <PaginationBox
-            postsPerPage={postsPerPage}
-            totalPosts={productList.length}
-            paginate={paginate}
+        <div className={styles.paginate}>
+          <ReactPaginate
+            nextLabel=">"
+            previousLabel="<"
+            previousLinkClassName="exit"
+            onClick={(event) =>
+              handlePagination((event.nextSelectedPage ?? 0) + 1)
+            }
+            pageRangeDisplayed={3}
+            pageCount={Number(meta.pageCount)}
+            renderOnZeroPageCount={null}
+            containerClassName="pagination"
+            pageLinkClassName="page-num"
+            nextLinkClassName="page-num"
+            activeLinkClassName="active"
           />
         </div>
         <Basket />

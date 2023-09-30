@@ -37,7 +37,7 @@ export const productSlice = createModel<RootModel>()({
     async getProduct(category_id) {
       try {
         const { data } = await $api.get(
-          `v1/product/index?shop_id=${category_id.shop_id}&category_id=${category_id.category_id}`
+          `v1/product/index?shop_id=${category_id.shop_id}&category_id=${category_id.category_id}&page=${category_id.page}`
         );
 
         dispatch.productSlice.setProduct(data.data.data);

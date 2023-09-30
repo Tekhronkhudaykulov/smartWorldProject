@@ -49,7 +49,7 @@ export const LogoutProject = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -64,7 +64,7 @@ export const LogoutForFirstPage = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -81,7 +81,7 @@ export const LogoutForMainAndMarketPage = () => {
     navigation(APP_ROUTES.BANNER);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
