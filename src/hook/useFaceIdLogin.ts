@@ -27,6 +27,7 @@ export const useFaceIdLogin = () => {
   useEffect(() => {
     socket.current.onmessage = (data: any) => {
       const token = JSON.parse(data.data).data.auth_key;
+      console.log({ token });
       localStorage.setItem("@token", token);
       $api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       if (token) {
@@ -48,7 +49,7 @@ export const LogoutProject = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -63,7 +64,7 @@ export const LogoutForFirstPage = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -80,7 +81,7 @@ export const LogoutForMainAndMarketPage = () => {
     navigation(APP_ROUTES.BANNER);
   };
   useIdleTimer({
-    timeout: 20000,
+    timeout: 200000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });

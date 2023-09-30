@@ -46,7 +46,7 @@ const Category = () => {
           hover={true}
           text="Все"
           onPress={() => {
-            dispatch.productSlice.getProduct({ shop_id: id, category_id: "" });
+            dispatch.productSlice.getProduct({ shop_id: id, category_id: 0 });
             setCategory(0);
           }}
         />
