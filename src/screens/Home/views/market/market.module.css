@@ -46,6 +46,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 ul{
     display: flex;
@@ -55,5 +56,7 @@ ul{
     padding: 0 20px;
     color: #FF9C20;
     width: 80%;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 

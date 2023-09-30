@@ -10,7 +10,7 @@ import { Dispatch, RootState } from "../../store";
 import { useParams, useSearchParams } from "react-router-dom";
 import { omitBy, isUndefined } from "lodash";
 
-const Category = () => {
+const Category = (handlePagination: any) => {
   const [category_id, setCategory] = useState(0);
 
   const dispatch = useDispatch<Dispatch>();
