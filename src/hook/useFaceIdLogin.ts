@@ -20,8 +20,6 @@ export const useFaceIdLogin = () => {
 
   const tokenForSocet = "NirjBn5zB1axwpZr2PV8wlUTzJcCdcYh";
 
-  console.log({ tokenForSocet });
-
   const socket = useRef<WebSocket>(
     new WebSocket(`wss://smart-dunyo.uz/socket?token=${tokenForSocet}`)
   );
@@ -50,7 +48,7 @@ export const LogoutProject = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 10000,
+    timeout: 20000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -65,7 +63,7 @@ export const LogoutForFirstPage = () => {
     navigation(APP_ROUTES.WELCOME);
   };
   useIdleTimer({
-    timeout: 10000,
+    timeout: 20000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
@@ -82,7 +80,7 @@ export const LogoutForMainAndMarketPage = () => {
     navigation(APP_ROUTES.BANNER);
   };
   useIdleTimer({
-    timeout: 10000,
+    timeout: 20000,
     onIdle: handleOnUserIdle,
     debounce: 500,
   });
