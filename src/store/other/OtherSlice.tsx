@@ -25,6 +25,12 @@ export const OtherSlice = createModel<RootModel>()({
         shopList: payload,
       };
     },
+    setCategoryIdValue: (state, payload) => {
+      return {
+        ...state,
+        categoryIdValue: payload,
+      };
+    },
   },
 
   effects: (dispatch) => ({

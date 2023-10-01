@@ -13,4 +13,5 @@ export type InitialState = {
   sliderList: getSlider[];
   sliderListNotToken: getSlider[];
   shopList: ShopListType[];
+  categoryIdValue: number;
 };

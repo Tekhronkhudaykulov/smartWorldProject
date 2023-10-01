@@ -56,8 +56,16 @@ const Market = () => {
 
   const dispatch = useDispatch<Dispatch>();
 
+  const { categoryIdValue } = useSelector(
+    (state: RootState) => state.OtherSlice
+  );
+
   useEffect(() => {
-    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0, page: 1 });
+    dispatch.productSlice.getProduct({
+      shop_id: id,
+      category_id: categoryIdValue,
+      page: 1,
+    });
     dispatch.profileSlice.getUser();
     dispatch.basketSlice.getAddCard();
   }, []);
@@ -89,8 +97,13 @@ const Market = () => {
   LogoutForMainAndMarketPage();
 
   const handlePagination = (page: any) => {
-    dispatch.productSlice.getProduct({ shop_id: id, category_id: 0, page });
+    dispatch.productSlice.getProduct({
+      shop_id: id,
+      category_id: categoryIdValue,
+      page,
+    });
   };
+
   return (
     <>
       <div className={styles.container}>

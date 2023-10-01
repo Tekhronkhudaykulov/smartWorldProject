@@ -46,7 +46,11 @@ const Category = (handlePagination: any) => {
           hover={true}
           text="Все"
           onPress={() => {
-            dispatch.productSlice.getProduct({ shop_id: id, category_id: 0 });
+            dispatch.productSlice.getProduct({
+              shop_id: id,
+              category_id: 0,
+              page: 1,
+            });
             setCategory(0);
           }}
         />
@@ -64,6 +68,7 @@ const Category = (handlePagination: any) => {
               text={e.name}
               onPress={() => {
                 setCategory(e.id);
+                dispatch.OtherSlice.setCategoryIdValue(e.id);
                 dispatch.productSlice.getProduct({
                   shop_id: id,
                   category_id: e.id,
