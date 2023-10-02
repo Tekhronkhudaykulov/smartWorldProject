@@ -32,6 +32,7 @@ const Input: React.FC<Props> = ({
           type={type}
           placeholder={placohlder}
           onChange={onchangeInput}
+          onClick={onFocus}
           onFocus={onFocus}
           value={valueInput}
         />
